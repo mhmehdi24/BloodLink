@@ -31,3 +31,12 @@ frontend/ Web UI (added in Phase 2b)
 - [ ] Phase 2 — Database build
 - [ ] Phase 2b — Application layer
 - [ ] Phase 3 — Testing and documentation
+
+## Progress
+
+- [x] T0 — Environment setup
+- [x] T1 — Scope lock, requirements & ER diagram  → **`v0.1-design`**
+- [ ] T2 — Database architecture
+- [ ] T3 — Flask backend & business logic
+- [ ] T4 — Frontend integration
+- [ ] T5 — Testing, mock data & final submission
