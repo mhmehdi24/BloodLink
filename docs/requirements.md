@@ -67,6 +67,14 @@ replaces manual tracking with database-enforced constraints. The system:
 BloodLink operates as a single-operator Central Hub with the following
 core modules:
 
+### M0 — Admin Entry Screen (UI only)
+
+- A single cosmetic login screen for the central admin, used as the UI
+  entry point for the demo.
+- No credentials are validated; no password is stored; no session is
+  created. Clicking "Sign In" navigates directly to the dashboard.
+- Real authentication and RBAC are explicitly out of scope (see Section 7).
+
 ### M1 — Donor Clinical Triage
 
 - Registers donors with clinical prerequisites (blood pressure, weight,
@@ -132,6 +140,11 @@ The following features are explicitly excluded from this build phase:
 - Integration with physical ISBT 128 barcode scanning hardware
   (barcodes are simulated via manual text entry).
 - Live WebSockets — updates rely on standard REST request/response cycles.
+
+**Clarification:** The admin login screen in M0 is a UI-only entry point
+for demonstration. It does not implement authentication, session handling,
+or RBAC. All backend routes remain unprotected in v1.0. This is consistent
+with the single-operator Central Hub scope.
 
 ---
 

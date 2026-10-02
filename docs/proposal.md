@@ -95,6 +95,11 @@ this build:
 
 ---
 
+**Clarification:** A cosmetic login screen for the single central admin is
+included as a UI entry point for demonstration only. No real authentication,
+password storage, session management, or role-based access control is
+implemented in v1.0. Backend authentication remains out of scope.
+
 ## Version
 
 Version 1.0 (MVP Capstone Build)
