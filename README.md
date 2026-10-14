@@ -1,5 +1,4 @@
 # BloodLink
-# BloodLink
 
 **Blood Donation Network & Emergency Matching System**
 
@@ -19,6 +18,7 @@ A centralized web-based database management system for blood donation, inventory
 - HTML/CSS/JavaScript (front-end, screens S1, S2, S4, S5)
 
 ## Repository Layout
+
 database/ SQL schema, sample data, triggers, views, queries
 docs/ Design documents, ER diagram, API reference
 backend/ Flask application (added in Phase 2b)
@@ -35,7 +35,7 @@ frontend/ Web UI (added in Phase 2b)
 ## Progress
 
 - [x] T0 — Environment setup
-- [x] T1 — Scope lock, requirements & ER diagram  → **`v0.1-design`**
+- [x] T1 — Scope lock, requirements & ER diagram → **`v0.1-design`**
 - [ ] T2 — Database architecture
 - [ ] T3 — Flask backend & business logic
 - [ ] T4 — Frontend integration
