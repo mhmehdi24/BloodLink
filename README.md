@@ -1,5 +1,4 @@
 # BloodLink
-# BloodLink
 
 **Blood Donation Network & Emergency Matching System**
 
