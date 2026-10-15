@@ -103,5 +103,33 @@ def create_donor():
         conn.close()
 
 
+
+# ------------------------------------------------------------
+# GET /api/inventory — list blood bags (optionally filter by status)
+# ------------------------------------------------------------
+@app.route("/api/inventory", methods=["GET"])
+def list_inventory():
+    """Return all blood bags. Optional ?status=Active|Dispatched|Discarded."""
+    status = request.args.get("status")
+
+    sql = (
+        "SELECT UnitID, BagCode, BloodType, DonorID, CollectionDate, "
+        "ExpiryDate, Status, StorageLocation "
+        "FROM Blood_Inventory"
+    )
+    params = ()
+    if status:
+        sql += " WHERE Status = %s"
+        params = (status,)
+    sql += " ORDER BY ExpiryDate ASC"
+
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(sql, params)
+            rows = cursor.fetchall()
+        return jsonify(rows)
+    finally:
+        conn.close()
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
