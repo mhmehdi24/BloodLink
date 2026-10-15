@@ -7,7 +7,7 @@ Run with:
 Then visit http://127.0.0.1:5000/health
 """
 
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from db import get_connection
@@ -131,5 +131,56 @@ def list_inventory():
         return jsonify(rows)
     finally:
         conn.close()
+ # ------------------------------------------------------------
+# POST /api/inventory — register a new blood bag (42-day expiry)
+# ------------------------------------------------------------
+@app.route("/api/inventory", methods=["POST"])
+def create_inventory():
+    """Register a new blood bag. ExpiryDate = CollectionDate + 42 days."""
+    data = request.get_json(silent=True) or {}
+
+    # Required fields
+    required = ["BagCode", "BloodType", "CollectionDate"]
+    missing = [f for f in required if not data.get(f)]
+    if missing:
+        return jsonify({"error": "Missing fields", "fields": missing}), 400
+
+    # Parse collection date
+    try:
+        collection_date = datetime.strptime(data["CollectionDate"], "%Y-%m-%d").date()
+    except ValueError:
+        return jsonify({"error": "CollectionDate must be YYYY-MM-DD"}), 400
+
+    # 42-day expiry engine (BR-2)
+    expiry_date = collection_date + timedelta(days=42)
+
+    # Insert
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "INSERT INTO Blood_Inventory "
+                "(BagCode, BloodType, DonorID, CollectionDate, ExpiryDate, "
+                " Status, StorageLocation) "
+                "VALUES (%s, %s, %s, %s, %s, %s, %s)",
+                (
+                    data["BagCode"],
+                    data["BloodType"],
+                    data.get("DonorID"),
+                    collection_date,
+                    expiry_date,
+                    "Active",
+                    data.get("StorageLocation"),
+                ),
+            )
+            new_id = cursor.lastrowid
+        conn.commit()
+        return jsonify({
+            "message": "Blood bag registered",
+            "UnitID": new_id,
+            "ExpiryDate": expiry_date.isoformat(),
+        }), 201
+    finally:
+        conn.close()       
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
