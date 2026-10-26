@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-tertiary-fixed":"#001d31","primary-container":"#b91c1c","on-primary":"#ffffff","on-error":"#ffffff","on-secondary-container":"#57657a","outline":"#8f6f6c","primary":"#93000b","on-primary-container":"#ffcdc7","secondary-fixed":"#d5e3fc","on-primary-fixed-variant":"#93000b","tertiary":"#004a73","secondary-fixed-dim":"#b9c7df","background":"#faf8ff","tertiary-container":"#006397","surface-container-lowest":"#ffffff","on-error-container":"#93000a","surface-container-low":"#f2f3ff","secondary":"#515f74","on-surface":"#131b2e","tertiary-fixed-dim":"#93ccff","surface-container-highest":"#dae2fd","inverse-surface":"#283044","primary-fixed":"#ffdad6","surface-bright":"#faf8ff","surface-container-high":"#e2e7ff","surface-dim":"#d2d9f4","inverse-on-surface":"#eef0ff","outline-variant":"#e4beb9","on-surface-variant":"#5b403d","on-secondary-fixed":"#0d1c2e","on-primary-fixed":"#410002","error-container":"#ffdad6","on-background":"#131b2e","surface-variant":"#dae2fd","on-tertiary":"#ffffff","on-secondary":"#ffffff","primary-fixed-dim":"#ffb4ab","on-secondary-fixed-variant":"#3a485b","tertiary-fixed":"#cce5ff","on-tertiary-container":"#b8dcff","surface-tint":"#b91c1c","error":"#ba1a1a","inverse-primary":"#ffb4ab","surface-container":"#eaedff","on-tertiary-fixed-variant":"#004b73","secondary-container":"#d5e3fc","surface":"#faf8ff"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-lg":"1.5rem",gutter:"1.5rem","space-md":"1rem",margin:"2rem","space-sm":"0.5rem","space-xl":"2rem","gutter-sm":"1rem","margin-sm":"1rem","space-xs":"0.25rem"},fontFamily:{"body-lg":["Inter"],"headline-lg-mobile":["Inter"],"headline-lg":["Inter"],"data-table":["Inter"],"body-md":["Inter"],"data-metric":["Inter"],"headline-xl-mobile":["Inter"],"label-sm":["Inter"],"label-lg":["Inter"],"label-md":["Inter"],"headline-xl":["Inter"],"headline-md":["Inter"],"body-sm":["Inter"]},fontSize:{"body-lg":["1rem",{lineHeight:"1.5rem",letterSpacing:"0em",fontWeight:"400"}],"headline-lg-mobile":["1.25rem",{lineHeight:"1.75rem",letterSpacing:"-0.015em",fontWeight:"600"}],"headline-lg":["1.5rem",{lineHeight:"2rem",letterSpacing:"-0.02em",fontWeight:"600"}],"data-table":["0.8125rem",{lineHeight:"1.25rem",letterSpacing:"0em",fontWeight:"400"}],"body-md":["0.875rem",{lineHeight:"1.25rem",letterSpacing:"0em",fontWeight:"400"}],"data-metric":["2rem",{lineHeight:"2.25rem",letterSpacing:"-0.03em",fontWeight:"700"}],"headline-xl-mobile":["1.75rem",{lineHeight:"2.25rem",letterSpacing:"-0.02em",fontWeight:"700"}],"label-sm":["0.6875rem",{lineHeight:"0.875rem",letterSpacing:"0.04em",fontWeight:"600"}],"label-lg":["0.875rem",{lineHeight:"1.25rem",letterSpacing:"-0.005em",fontWeight:"600"}],"label-md":["0.75rem",{lineHeight:"1rem",letterSpacing:"0.02em",fontWeight:"600"}],"headline-xl":["2.25rem",{lineHeight:"2.75rem",letterSpacing:"-0.025em",fontWeight:"700"}],"headline-md":["1.125rem",{lineHeight:"1.5rem",letterSpacing:"-0.01em",fontWeight:"600"}],"body-sm":["0.75rem",{lineHeight:"1rem",letterSpacing:"0.01em",fontWeight:"400"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WVDMs83KaQFQeQuXMHAAeYM0576E5vu9SlMjpjHvnoglOq6inI72VYpMz4fbrcODA2yc5bM4iXETIdhhVqD5LDlgkFY56TCS9nobBFyRXgxIZARqSqxNat8-SEwDdU3GdD4cjfLwIAxf1WSzWfH8IHcR-zt-mUQX6wCcjtlGvLxkxvQnkSEvVqz6dbfDX_htHxNFMyaA5F4jZVF3-lcgg-VLRfkGBKAM8lyEhNwW9BL-EVHd6JJd4"/><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-on-surface leading-none">BloodLink</span><span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider leading-tight">Blood Bank Management System</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider">Central Hub</span></div><div class="hidden md:flex items-center gap-space-sm font-label-md text-label-md text-secondary"><span class="material-symbols-outlined text-[18px]">schedule</span><span class="font-data-table text-data-table text-on-surface font-medium">UTC 14:32:08</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">SINGLE OPERATOR</span></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-[260px] bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex flex-col justify-between py-space-md"><div class="flex flex-col gap-space-md"><div class="px-space-md font-label-sm text-label-sm text-secondary uppercase tracking-widest">Primary Navigation</div><nav class="flex flex-col gap-space-xs px-space-xs" data-active-classes="bg-error-container text-primary font-bold border-l-4 border-primary-container pl-[calc(1rem-4px)]"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="patient-log" href="#"><span class="material-symbols-outlined text-[20px]">assignment</span><span>Patient Log</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="donor-registry" href="#"><span class="material-symbols-outlined text-[20px]">group</span><span>Donor Registry</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="intake-control" href="#"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span>Intake Control</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="hub-requests" href="#"><span class="material-symbols-outlined text-[20px]">domain</span><span>Hub Requests</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg transition-all bg-error-container text-primary font-bold border-l-4 border-primary-container pl-[calc(1rem-4px)]" data-path="match-and-dispatch" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span>Match & Dispatch</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="analytics" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span>Analytics</span></a></nav></div><div class="px-space-md py-space-sm mx-space-xs rounded-xl bg-surface-container-low flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-secondary uppercase">Active Node</span><span class="font-label-md text-label-md text-on-surface font-semibold">Unit Terminal-01</span></div><span class="w-2.5 h-2.5 rounded-full bg-tertiary-container"></span></div></aside><div class="pl-[260px]"><main class="relative pt-16 min-h-screen bg-surface"><div class="max-w-[1400px] mx-auto p-margin"><div class="flex flex-col w-full gap-space-lg">
+<!-- Control & Clinical Requisition Selector -->
+<section class="relative bg-surface-container-lowest rounded-xl shadow-sm p-space-lg overflow-hidden">
+<!-- Ambient Cold-Storage Trace -->
+<div class="absolute -right-20 -top-24 w-80 h-80 bg-gradient-to-br from-primary-container/10 via-tertiary-container/5 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col gap-space-md">
+<!-- Upper Strip: Requisition Dropdown & Match Trigger -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Target Requisition Identifier</span>
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-error-container text-primary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+              CRITICAL DEMAND
+            </span>
+</div>
+<div class="relative max-w-3xl">
+<div class="w-full bg-surface-container-low hover:bg-surface-container transition-colors rounded-lg px-space-md py-space-sm cursor-pointer flex items-center justify-between shadow-inner">
+<div class="flex flex-col truncate">
+<span class="font-headline-md text-headline-md text-on-surface truncate">
+                  #REQ-4091 — Dhaka Medical College Hospital (O- Negative, 4 Units Needed, CRITICAL)
+                </span>
+<span class="font-body-sm text-body-sm text-secondary truncate mt-0.5">
+                  Patient in trauma ward. Urgency: Immediate dispatch required.
+                </span>
+</div>
+<span class="material-symbols-outlined text-secondary ml-space-sm flex-shrink-0">unfold_more</span>
+</div>
+</div>
+</div>
+<!-- Primary Control Trigger -->
+<div class="flex items-center gap-space-sm self-start xl:self-end">
+<button class="inline-flex items-center gap-space-sm bg-primary-container hover:bg-primary text-on-primary font-label-lg text-label-lg px-space-lg h-10 rounded-lg shadow-sm transition-all active:scale-[0.98]" id="run-fifo-btn">
+<span class="material-symbols-outlined text-[18px]" id="sync-icon">bolt</span>
+<span>Run FIFO Match</span>
+</button>
+</div>
+</div>
+<!-- Match Criteria Configuration Strip -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">bloodtype</span>
+<span class="text-secondary font-medium">Target Group:</span>
+<span class="font-bold tracking-tight text-primary">O- (Negative)</span>
+</div>
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-tertiary">check_circle</span>
+<span class="text-secondary font-medium">Compatibility:</span>
+<span class="font-bold">Identical (O-)</span>
+</div>
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">sort</span>
+<span class="text-secondary font-medium">Algorithm:</span>
+<span class="font-bold">First-In-First-Out (Oldest Expiry Priority)</span>
+</div>
+<div class="ml-auto hidden lg:flex items-center gap-space-xs font-label-sm text-label-sm text-secondary">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+<span>Buffer Allowance: 48h Crossmatch Window</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Middle Section: FIFO Compatible Stock Grid -->
+<section class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Table Header & Intelligence Banner -->
+<div class="p-space-lg pb-space-md flex flex-col gap-space-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-1.5 h-5 rounded bg-primary-container"></span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Compatible Units Identified in Stock</h2>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-secondary">Prioritized by Expiry Date</span>
+</div>
+<div class="flex items-center gap-space-xs font-data-table text-data-table text-secondary">
+<span>Sort Metric:</span>
+<span class="text-on-surface font-semibold uppercase">Days to Expiration (ASC)</span>
+</div>
+</div>
+<!-- Context Notification Bar -->
+<div class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">info</span>
+<p class="font-body-md text-body-md text-on-surface">
+<span class="font-bold text-primary">4 matching units</span> available in cold storage. Units sorted strictly by expiry date (FIFO) to minimize inventory wastage and safeguard clinical utility.
+        </p>
+</div>
+</div>
+<!-- Inventory Data Table -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left font-data-table text-data-table">
+<thead class="bg-surface-container-low text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<tr>
+<th class="py-space-sm px-space-md">Unit ID</th>
+<th class="py-space-sm px-space-md">Bag Code</th>
+<th class="py-space-sm px-space-md">Blood Type</th>
+<th class="py-space-sm px-space-md">Collection Date</th>
+<th class="py-space-sm px-space-md">Expiry Status (FIFO)</th>
+<th class="py-space-sm px-space-md">Storage Location</th>
+<th class="py-space-sm px-space-md">Serology / Crossmatch</th>
+<th class="py-space-sm px-space-md text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-none text-on-surface">
+<!-- Row 1: Urgent FIFO Oldest Expiry -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-space-sm px-space-md">
+<span class="font-bold text-on-surface">#UN-1049</span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="font-label-md text-label-md px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono">BG-880-9112</span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-primary-fixed text-on-primary-fixed font-bold text-body-lg shadow-sm">
+                O-
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-secondary">
+              12 Sep 2024
+            </td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-semibold text-primary">24 Oct 2024</span>
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-error-container text-primary font-label-sm text-label-sm font-bold">
+                  4 days left — Urgent FIFO
+                </span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-secondary">
+<span class="material-symbols-outlined text-[16px] text-tertiary">kitchen</span>
+<span>Ref A · Shelf 1 · Bin 02</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                Compatible (Crossmatch OK)
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="allocate-btn inline-flex items-center justify-center px-space-md h-8 rounded-lg bg-surface-container text-secondary font-label-md text-label-md transition-all" data-code="BG-880-9112" data-unit="UN-1049">
+<span class="material-symbols-outlined text-[16px] mr-1">check</span>
+<span>Allocated</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Allocated Status -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-space-sm px-space-md">
+<span class="font-bold text-on-surface">#UN-1053</span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="font-label-md text-label-md px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono">BG-880-9145</span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-primary-fixed text-on-primary-fixed font-bold text-body-lg shadow-sm">
+                O-
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-secondary">
+              18 Sep 2024
+            </td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-semibold text-on-surface">30 Oct 2024</span>
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-amber-100 text-amber-800 font-label-sm text-label-sm font-semibold">
+                  10 days left
+                </span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-secondary">
+<span class="material-symbols-outlined text-[16px] text-tertiary">kitchen</span>
+<span>Ref A · Shelf 1 · Bin 04</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                Compatible (Crossmatch OK)
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="allocate-btn inline-flex items-center justify-center px-space-md h-8 rounded-lg bg-surface-container text-secondary font-label-md text-label-md transition-all" data-code="BG-880-9145" data-unit="UN-1053">
+<span class="material-symbols-outlined text-[16px] mr-1">check</span>
+<span>Allocated</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Available for Allocation -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-space-sm px-space-md">
+<span class="font-bold text-on-surface">#UN-1060</span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="font-label-md text-label-md px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono">BG-880-9190</span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-primary-fixed text-on-primary-fixed font-bold text-body-lg shadow-sm">
+                O-
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-secondary">
+              28 Sep 2024
+            </td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-semibold text-on-surface">09 Nov 2024</span>
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold">
+                  20 days left
+                </span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-secondary">
+<span class="material-symbols-outlined text-[16px] text-tertiary">kitchen</span>
+<span>Ref A · Shelf 2 · Bin 01</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                Compatible (Crossmatch OK)
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="allocate-btn inline-flex items-center justify-center px-space-md h-8 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all active:scale-95" data-code="BG-880-9190" data-unit="UN-1060">
+<span>Allocate</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Available for Allocation -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-space-sm px-space-md">
+<span class="font-bold text-on-surface">#UN-1072</span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="font-label-md text-label-md px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono">BG-880-9240</span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-primary-fixed text-on-primary-fixed font-bold text-body-lg shadow-sm">
+                O-
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-secondary">
+              08 Oct 2024
+            </td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-semibold text-on-surface">19 Nov 2024</span>
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold">
+                  30 days left
+                </span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-secondary">
+<span class="material-symbols-outlined text-[16px] text-tertiary">kitchen</span>
+<span>Ref A · Shelf 3 · Bin 05</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                Compatible (Crossmatch OK)
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="allocate-btn inline-flex items-center justify-center px-space-md h-8 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all active:scale-95" data-code="BG-880-9240" data-unit="UN-1072">
+<span>Allocate</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Note -->
+<div class="px-space-lg py-space-sm bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-secondary font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">info</span>
+<span>Note: Units sorted by expiry date (FIFO) according to blood management protocol.</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase">Verified Standard ISBT-128</span>
+</div>
+</section>
+<!-- Bottom Section: Allocation Manifest Preview & Dispatch -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Manifest Card -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Dispatch Fulfillment Stage</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Allocation Manifest Preview</h3>
+</div>
+<div class="flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-low">
+<span class="font-label-md text-label-md text-secondary">Progress:</span>
+<span class="font-headline-md text-headline-md text-primary leading-none" id="allocation-count">2 of 4</span>
+<span class="font-label-sm text-label-sm text-secondary">Units Locked</span>
+</div>
+</div>
+<!-- Metric Indicator Track -->
+<div class="w-full bg-surface-container-low h-2.5 rounded-full overflow-hidden flex">
+<div class="bg-primary-container h-full rounded-full transition-all duration-300" id="progress-bar" style="width: 50%;"></div>
+</div>
+<!-- Selected Units Grid Preview -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+<!-- Staged Unit 1 -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded bg-primary text-on-primary font-bold flex items-center justify-center font-label-md text-label-md">O-</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">#UN-1049 (BG-880-9112)</span>
+<span class="font-body-sm text-body-sm text-secondary">Ref A-1-02 · Exp: 24 Oct (4d)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-emerald-700 text-[18px]">verified</span>
+</div>
+<!-- Staged Unit 2 -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded bg-primary text-on-primary font-bold flex items-center justify-center font-label-md text-label-md">O-</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">#UN-1053 (BG-880-9145)</span>
+<span class="font-body-sm text-body-sm text-secondary">Ref A-1-04 · Exp: 30 Oct (10d)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-emerald-700 text-[18px]">verified</span>
+</div>
+</div>
+</div>
+<!-- Manifest Signoff Footer -->
+<div class="mt-space-lg pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-xs text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
+<span>Dual-verifier security protocol required at custody handover.</span>
+</div>
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm bg-primary-container hover:bg-primary text-on-primary font-label-lg text-label-lg px-space-lg h-10 rounded-lg shadow-sm transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+<span>Dispatch Courier Manifest</span>
+</button>
+</div>
+</div>
+<!-- Cold-Chain Transport Intelligence Panel -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col justify-between">
+<div class="flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Logistics Specification</span>
+<h4 class="font-headline-md text-headline-md text-on-surface">Cold-Chain Route Assurance</h4>
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex justify-between items-center py-1">
+<span class="font-body-sm text-body-sm text-secondary">Recipient Facility:</span>
+<span class="font-label-md text-label-md text-on-surface text-right font-medium">Dhaka Med College (Trauma)</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="font-body-sm text-body-sm text-secondary">Courier Transit Time:</span>
+<span class="font-label-md text-label-md text-on-surface font-mono">18 mins (Priority Van)</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="font-body-sm text-body-sm text-secondary">Target Temperature:</span>
+<span class="font-label-md text-label-md text-on-surface font-mono">+1.0°C to +6.0°C</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="font-body-sm text-body-sm text-secondary">Transport Box Model:</span>
+<span class="font-label-md text-label-md text-on-surface">Thermotek Cryo-4L</span>
+</div>
+</div>
+</div>
+<!-- Quick Scan Validation Barcode -->
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary uppercase">Manifest Hash</span>
+<span class="font-mono text-body-sm text-on-surface font-bold">MF-2024-O-4091</span>
+</div>
+<div class="h-8 flex items-center gap-0.5 opacity-75">
+<span class="w-1 h-6 bg-on-surface"></span>
+<span class="w-0.5 h-6 bg-on-surface"></span>
+<span class="w-1.5 h-6 bg-on-surface"></span>
+<span class="w-0.5 h-6 bg-on-surface"></span>
+<span class="w-2 h-6 bg-on-surface"></span>
+<span class="w-1 h-6 bg-on-surface"></span>
+<span class="w-0.5 h-6 bg-on-surface"></span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // Dynamic allocation toggle & simulation
+  let allocatedCount = 2;
+  const targetCount = 4;
+  
+  const buttons = document.querySelectorAll('.allocate-btn');
+  const countEl = document.getElementById('allocation-count');
+  const progressEl = document.getElementById('progress-bar');
+  const runFifoBtn = document.getElementById('run-fifo-btn');
+  const syncIcon = document.getElementById('sync-icon');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isAllocated = btn.innerText.includes('Allocated');
+      
+      if (!isAllocated && allocatedCount < targetCount) {
+        allocatedCount++;
+        btn.classList.remove('bg-primary-container', 'hover:bg-primary', 'text-on-primary');
+        btn.classList.add('bg-surface-container', 'text-secondary');
+        btn.innerHTML = '<span class="material-symbols-outlined text-[16px] mr-1">check</span><span>Allocated</span>';
+      } else if (isAllocated) {
+        allocatedCount--;
+        btn.classList.remove('bg-surface-container', 'text-secondary');
+        btn.classList.add('bg-primary-container', 'hover:bg-primary', 'text-on-primary');
+        btn.innerHTML = '<span>Allocate</span>';
+      }
+
+      if (countEl && progressEl) {
+        countEl.textContent = `${allocatedCount} of ${targetCount}`;
+        const pct = (allocatedCount / targetCount) * 100;
+        progressEl.style.width = `${pct}%`;
+      }
+    });
+  });
+
+  if (runFifoBtn && syncIcon) {
+    runFifoBtn.addEventListener('click', () => {
+      syncIcon.classList.add('animate-spin');
+      setTimeout(() => {
+        syncIcon.classList.remove('animate-spin');
+      }, 700);
+    });
+  }
+</script></div></main></div></body></html>

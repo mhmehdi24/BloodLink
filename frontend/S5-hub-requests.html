@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-tertiary-fixed":"#001d31","primary-container":"#b91c1c","on-primary":"#ffffff","on-error":"#ffffff","on-secondary-container":"#57657a","outline":"#8f6f6c","primary":"#93000b","on-primary-container":"#ffcdc7","secondary-fixed":"#d5e3fc","on-primary-fixed-variant":"#93000b","tertiary":"#004a73","secondary-fixed-dim":"#b9c7df","background":"#faf8ff","tertiary-container":"#006397","surface-container-lowest":"#ffffff","on-error-container":"#93000a","surface-container-low":"#f2f3ff","secondary":"#515f74","on-surface":"#131b2e","tertiary-fixed-dim":"#93ccff","surface-container-highest":"#dae2fd","inverse-surface":"#283044","primary-fixed":"#ffdad6","surface-bright":"#faf8ff","surface-container-high":"#e2e7ff","surface-dim":"#d2d9f4","inverse-on-surface":"#eef0ff","outline-variant":"#e4beb9","on-surface-variant":"#5b403d","on-secondary-fixed":"#0d1c2e","on-primary-fixed":"#410002","error-container":"#ffdad6","on-background":"#131b2e","surface-variant":"#dae2fd","on-tertiary":"#ffffff","on-secondary":"#ffffff","primary-fixed-dim":"#ffb4ab","on-secondary-fixed-variant":"#3a485b","tertiary-fixed":"#cce5ff","on-tertiary-container":"#b8dcff","surface-tint":"#b91c1c","error":"#ba1a1a","inverse-primary":"#ffb4ab","surface-container":"#eaedff","on-tertiary-fixed-variant":"#004b73","secondary-container":"#d5e3fc","surface":"#faf8ff"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-lg":"1.5rem",gutter:"1.5rem","space-md":"1rem",margin:"2rem","space-sm":"0.5rem","space-xl":"2rem","gutter-sm":"1rem","margin-sm":"1rem","space-xs":"0.25rem"},fontFamily:{"body-lg":["Inter"],"headline-lg-mobile":["Inter"],"headline-lg":["Inter"],"data-table":["Inter"],"body-md":["Inter"],"data-metric":["Inter"],"headline-xl-mobile":["Inter"],"label-sm":["Inter"],"label-lg":["Inter"],"label-md":["Inter"],"headline-xl":["Inter"],"headline-md":["Inter"],"body-sm":["Inter"]},fontSize:{"body-lg":["1rem",{lineHeight:"1.5rem",letterSpacing:"0em",fontWeight:"400"}],"headline-lg-mobile":["1.25rem",{lineHeight:"1.75rem",letterSpacing:"-0.015em",fontWeight:"600"}],"headline-lg":["1.5rem",{lineHeight:"2rem",letterSpacing:"-0.02em",fontWeight:"600"}],"data-table":["0.8125rem",{lineHeight:"1.25rem",letterSpacing:"0em",fontWeight:"400"}],"body-md":["0.875rem",{lineHeight:"1.25rem",letterSpacing:"0em",fontWeight:"400"}],"data-metric":["2rem",{lineHeight:"2.25rem",letterSpacing:"-0.03em",fontWeight:"700"}],"headline-xl-mobile":["1.75rem",{lineHeight:"2.25rem",letterSpacing:"-0.02em",fontWeight:"700"}],"label-sm":["0.6875rem",{lineHeight:"0.875rem",letterSpacing:"0.04em",fontWeight:"600"}],"label-lg":["0.875rem",{lineHeight:"1.25rem",letterSpacing:"-0.005em",fontWeight:"600"}],"label-md":["0.75rem",{lineHeight:"1rem",letterSpacing:"0.02em",fontWeight:"600"}],"headline-xl":["2.25rem",{lineHeight:"2.75rem",letterSpacing:"-0.025em",fontWeight:"700"}],"headline-md":["1.125rem",{lineHeight:"1.5rem",letterSpacing:"-0.01em",fontWeight:"600"}],"body-sm":["0.75rem",{lineHeight:"1rem",letterSpacing:"0.01em",fontWeight:"400"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WVDMs83KaQFQeQuXMHAAeYM0576E5vu9SlMjpjHvnoglOq6inI72VYpMz4fbrcODA2yc5bM4iXETIdhhVqD5LDlgkFY56TCS9nobBFyRXgxIZARqSqxNat8-SEwDdU3GdD4cjfLwIAxf1WSzWfH8IHcR-zt-mUQX6wCcjtlGvLxkxvQnkSEvVqz6dbfDX_htHxNFMyaA5F4jZVF3-lcgg-VLRfkGBKAM8lyEhNwW9BL-EVHd6JJd4"/><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-on-surface leading-none">BloodLink</span><span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider leading-tight">Blood Bank Management System</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider">Central Hub</span></div><div class="hidden md:flex items-center gap-space-sm font-label-md text-label-md text-secondary"><span class="material-symbols-outlined text-[18px]">schedule</span><span class="font-data-table text-data-table text-on-surface font-medium">UTC 14:32:08</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">SINGLE OPERATOR</span></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-[260px] bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex flex-col justify-between py-space-md"><div class="flex flex-col gap-space-md"><div class="px-space-md font-label-sm text-label-sm text-secondary uppercase tracking-widest">Primary Navigation</div><nav class="flex flex-col gap-space-xs px-space-xs" data-active-classes="bg-error-container text-primary font-bold border-l-4 border-primary-container pl-[calc(1rem-4px)]"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="patient-log" href="#"><span class="material-symbols-outlined text-[20px]">assignment</span><span>Patient Log</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="donor-registry" href="#"><span class="material-symbols-outlined text-[20px]">group</span><span>Donor Registry</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="intake-control" href="#"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span>Intake Control</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg transition-all bg-error-container text-primary font-bold border-l-4 border-primary-container pl-[calc(1rem-4px)]" data-path="hub-requests" href="#"><span class="material-symbols-outlined text-[20px]">domain</span><span>Hub Requests</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="match-and-dispatch" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span>Match & Dispatch</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="analytics" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span>Analytics</span></a></nav></div><div class="px-space-md py-space-sm mx-space-xs rounded-xl bg-surface-container-low flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-secondary uppercase">Active Node</span><span class="font-label-md text-label-md text-on-surface font-semibold">Unit Terminal-01</span></div><span class="w-2.5 h-2.5 rounded-full bg-tertiary-container"></span></div></aside><div class="pl-[260px]"><main class="relative pt-16 min-h-screen bg-surface"><div class="max-w-[1400px] mx-auto p-margin"><div class="flex flex-col w-full gap-space-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Logistics & Requisition Node</span>
+<span class="px-space-xs py-0.5 rounded-full bg-error-container text-primary font-label-sm text-label-sm font-semibold">Live Pipeline</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Hub Requisitions & Demands</h1>
+<p class="font-body-md text-body-md text-secondary">Dispatch-level triage and allocation gateway for connected regional hospital facilities.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary">hub</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary">Active Hospitals</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">14 Connected</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-primary-container">bloodtype</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary">Critical Shortage</span>
+<span class="font-label-md text-label-md text-primary font-bold">O- (24 Units Left)</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<div class="lg:col-span-5 xl:col-span-4 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col gap-space-lg">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px]">add_circle</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Create Hospital Requisition</h2>
+</div>
+<p class="font-body-sm text-body-sm text-secondary leading-snug">Log emergency or scheduled blood demands from regional healthcare hubs.</p>
+</div>
+<span class="font-label-sm text-label-sm px-space-sm py-space-xs rounded-full bg-surface-container font-semibold text-secondary">FORM #R-04</span>
+</div>
+<form class="flex flex-col gap-space-md" id="requisitionForm">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between" for="hospitalSelect">
+<span>Target Hospital</span>
+<span class="text-primary font-label-sm text-label-sm">*Required</span>
+</label>
+<div class="relative">
+<select class="w-full h-10 px-space-md py-space-xs bg-surface-container-low text-on-surface font-body-md text-body-md rounded-lg appearance-none cursor-pointer focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container focus:outline-none transition-all" id="hospitalSelect" required="">
+<option disabled="" selected="" value="">Select Hospital Hub</option>
+<option value="Dhaka Medical College Hospital (DMCH)">Dhaka Medical College Hospital (DMCH)</option>
+<option value="BSMMU (PG Hospital)">BSMMU (PG Hospital)</option>
+<option value="National Institute of Cardiovascular Diseases (NICVD)">NICVD (Cardiovascular Diseases)</option>
+<option value="Square Hospitals Ltd.">Square Hospitals Ltd.</option>
+<option value="Kurmitola General Hospital">Kurmitola General Hospital</option>
+<option value="United Hospital Gulshan">United Hospital Gulshan</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-sm top-2.5 pointer-events-none text-secondary text-[20px]">expand_more</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface" for="bloodGroupSelect">Blood Type</label>
+<div class="relative">
+<select class="w-full h-10 px-space-md py-space-xs bg-surface-container-low text-on-surface font-headline-md text-headline-md font-bold rounded-lg appearance-none cursor-pointer focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container focus:outline-none transition-all" id="bloodGroupSelect" required="">
+<option value="O-">O- Negative</option>
+<option value="O+">O+ Positive</option>
+<option value="A+">A+ Positive</option>
+<option value="A-">A- Negative</option>
+<option value="B+">B+ Positive</option>
+<option value="B-">B- Negative</option>
+<option value="AB+">AB+ Positive</option>
+<option value="AB-">AB- Negative</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-sm top-2.5 pointer-events-none text-secondary text-[20px]">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface" for="unitsCount">Units (Bags)</label>
+<div class="relative flex items-center">
+<input class="w-full h-10 px-space-md py-space-xs bg-surface-container-low text-on-surface font-body-md text-body-md font-bold rounded-lg focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container focus:outline-none transition-all" id="unitsCount" max="25" min="1" required="" type="number" value="4"/>
+<span class="absolute right-space-sm font-label-sm text-label-sm uppercase text-secondary pointer-events-none">Units</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface">Triage Urgency Protocol</label>
+<div class="flex flex-col gap-space-xs" id="urgencyGroup">
+<label class="relative flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low cursor-pointer transition-all hover:bg-surface-container has-[:checked]:bg-surface-container-high">
+<input class="mt-1 accent-secondary" name="urgency_level" type="radio" value="Standard"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold uppercase">Standard</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Routine Logistics</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Scheduled surgery, stock maintenance (>12 hours)</span>
+</div>
+</label>
+<label class="relative flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low cursor-pointer transition-all hover:bg-surface-container has-[:checked]:bg-amber-100">
+<input class="mt-1 accent-amber-600" name="urgency_level" type="radio" value="Urgent"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-amber-100 text-amber-800 font-label-sm text-label-sm font-bold uppercase">Urgent</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Priority Transfer</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Needs rapid delivery within 4-6 hours</span>
+</div>
+</label>
+<label class="relative flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low cursor-pointer transition-all hover:bg-surface-container has-[:checked]:bg-error-container">
+<input checked="" class="mt-1 accent-primary" name="urgency_level" type="radio" value="Critical"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-error-container text-primary font-label-sm text-label-sm font-bold uppercase flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+                      Critical
+                    </span>
+<span class="font-label-md text-label-md text-primary font-bold">STAT Dispatch</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Immediate life-saving trauma / acute hemorrhage</span>
+</div>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface" for="physicianInfo">Requesting Physician / Ward</label>
+<div class="relative">
+<input class="w-full h-10 pl-10 pr-space-md py-space-xs bg-surface-container-low text-on-surface font-body-md text-body-md rounded-lg focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container focus:outline-none transition-all placeholder:text-secondary" id="physicianInfo" placeholder="e.g. Dr. M. Rahman / ICU-3" required="" type="text"/>
+<span class="material-symbols-outlined absolute left- space-sm left-2.5 top-2.5 text-secondary text-[20px]">medical_services</span>
+</div>
+</div>
+<button class="w-full h-11 mt-space-xs rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-lg text-label-lg tracking-wide uppercase transition-all shadow-md flex items-center justify-center gap-space-sm active:scale-[0.99]" type="submit">
+<span class="material-symbols-outlined text-[20px]">send_time_extension</span>
+<span>Submit Requisition</span>
+</button>
+</form>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-[22px]">verified</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Direct Hub Integration Active</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">Connected to 6 core triage centers via Bangladesh Healthnet API</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm flex flex-col overflow-hidden">
+<div class="p-space-lg flex flex-col sm:flex-row sm:items-center justify-between gap-space-md bg-surface-container-low/50">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Incoming & Pending Hub Requisitions</h2>
+<span class="px-space-sm py-0.5 rounded-full bg-error-container text-primary font-label-sm text-label-sm font-bold" id="requisitionCounter">8 Active Orders</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">Real-time triage ledger awaiting laboratory compatibility clearance & fleet dispatch.</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-all" id="refreshTableBtn">
+<span class="material-symbols-outlined text-[18px]" id="refreshIcon">refresh</span>
+<span class="hidden sm:inline">Live Refresh</span>
+</button>
+</div>
+</div>
+<div class="px-space-lg py-space-sm flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low/20">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-secondary">Urgency Filter:</span>
+<div class="inline-flex rounded-lg bg-surface-container-low p-0.5">
+<button class="filter-btn px-space-sm py-1 rounded-md font-label-sm text-label-sm font-semibold bg-surface-container-lowest text-on-surface shadow-xs transition-all" data-filter="all">All (8)</button>
+<button class="filter-btn px-space-sm py-1 rounded-md font-label-sm text-label-sm font-semibold text-secondary hover:text-on-surface transition-all" data-filter="Critical">Critical (2)</button>
+<button class="filter-btn px-space-sm py-1 rounded-md font-label-sm text-label-sm font-semibold text-secondary hover:text-on-surface transition-all" data-filter="Urgent">Urgent (2)</button>
+<button class="filter-btn px-space-sm py-1 rounded-md font-label-sm text-label-sm font-semibold text-secondary hover:text-on-surface transition-all" data-filter="Standard">Standard (2)</button>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-secondary font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-emerald-600">bolt</span>
+<span>Avg Response: <strong class="text-on-surface">4.2 mins</strong></span>
+</div>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse" id="ordersTable">
+<thead>
+<tr class="bg-surface-container-low text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md">Req ID</th>
+<th class="py-space-sm px-space-md">Hospital</th>
+<th class="py-space-sm px-space-md text-center">Blood Type</th>
+<th class="py-space-sm px-space-md text-right">Units</th>
+<th class="py-space-sm px-space-md">Urgency Level</th>
+<th class="py-space-sm px-space-md">Requested</th>
+<th class="py-space-sm px-space-md text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 font-data-table text-data-table" id="tableBody">
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors" data-urgency="Critical">
+<td class="py-space-sm px-space-md font-bold text-on-surface">#REQ-4091</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Dhaka Medical College Hospital (DMCH)</span>
+<span class="font-body-sm text-body-sm text-secondary">Trauma Center Bed-12 • Dr. S. Ahmed</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center justify-center w-10 h-7 rounded bg-error-container text-primary font-headline-md text-headline-md font-bold shadow-xs">O-</span>
+</td>
+<td class="py-space-sm px-space-md text-right font-bold text-on-surface">4 Units</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-error-container text-primary font-label-sm text-label-sm font-bold uppercase tracking-wider shadow-xs">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Critical
+                  </span>
+</td>
+<td class="py-space-sm px-space-md text-secondary whitespace-nowrap">12 mins ago</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="process-btn px-space-md py-1.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md font-bold shadow-xs transition-all active:scale-95 inline-flex items-center gap-1">
+<span>Process</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</td>
+</tr>
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors" data-urgency="Urgent">
+<td class="py-space-sm px-space-md font-bold text-on-surface">#REQ-4089</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">NICVD (Cardiovascular)</span>
+<span class="font-body-sm text-body-sm text-secondary">Cath Lab 2 • Dr. K. Chowdhury</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center justify-center w-10 h-7 rounded bg-surface-container text-on-surface font-headline-md text-headline-md font-bold shadow-xs">B+</span>
+</td>
+<td class="py-space-sm px-space-md text-right font-bold text-on-surface">6 Units</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-amber-100 text-amber-900 font-label-sm text-label-sm font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                    Urgent
+                  </span>
+</td>
+<td class="py-space-sm px-space-md text-secondary whitespace-nowrap">45 mins ago</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="process-btn px-space-md py-1.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md font-bold shadow-xs transition-all active:scale-95 inline-flex items-center gap-1">
+<span>Process</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</td>
+</tr>
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors" data-urgency="Standard">
+<td class="py-space-sm px-space-md font-bold text-on-surface">#REQ-4088</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">BSMMU (PG Hospital)</span>
+<span class="font-body-sm text-body-sm text-secondary">General Surgery 4 • Dr. R. Haque</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center justify-center w-10 h-7 rounded bg-surface-container text-on-surface font-headline-md text-headline-md font-bold shadow-xs">A+</span>
+</td>
+<td class="py-space-sm px-space-md text-right font-bold text-on-surface">2 Units</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-semibold uppercase tracking-wider">
+                    Standard
+                  </span>
+</td>
+<td class="py-space-sm px-space-md text-secondary whitespace-nowrap">2 hours ago</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="process-btn px-space-md py-1.5 rounded-lg bg-secondary-container hover:bg-surface-container-high text-on-secondary-container font-label-md text-label-md font-bold shadow-xs transition-all active:scale-95 inline-flex items-center gap-1">
+<span>Process</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</td>
+</tr>
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors" data-urgency="Critical">
+<td class="py-space-sm px-space-md font-bold text-on-surface">#REQ-4085</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Square Hospitals Ltd.</span>
+<span class="font-body-sm text-body-sm text-secondary">Pediatric ER • Dr. F. Nasreen</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center justify-center w-10 h-7 rounded bg-error-container text-primary font-headline-md text-headline-md font-bold shadow-xs">AB-</span>
+</td>
+<td class="py-space-sm px-space-md text-right font-bold text-on-surface">1 Unit</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-error-container text-primary font-label-sm text-label-sm font-bold uppercase tracking-wider shadow-xs">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Critical
+                  </span>
+</td>
+<td class="py-space-sm px-space-md text-secondary whitespace-nowrap">3 hours ago</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="process-btn px-space-md py-1.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md font-bold shadow-xs transition-all active:scale-95 inline-flex items-center gap-1">
+<span>Process</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</td>
+</tr>
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors" data-urgency="Urgent">
+<td class="py-space-sm px-space-md font-bold text-on-surface">#REQ-4082</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Kurmitola General Hospital</span>
+<span class="font-body-sm text-body-sm text-secondary">Obstetrics Unit • Dr. T. Parvin</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center justify-center w-10 h-7 rounded bg-surface-container text-on-surface font-headline-md text-headline-md font-bold shadow-xs">O+</span>
+</td>
+<td class="py-space-sm px-space-md text-right font-bold text-on-surface">3 Units</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-amber-100 text-amber-900 font-label-sm text-label-sm font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                    Urgent
+                  </span>
+</td>
+<td class="py-space-sm px-space-md text-secondary whitespace-nowrap">5 hours ago</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="process-btn px-space-md py-1.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md font-bold shadow-xs transition-all active:scale-95 inline-flex items-center gap-1">
+<span>Process</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</td>
+</tr>
+<tr class="table-row group hover:bg-surface-container-low/60 transition-colors" data-urgency="Standard">
+<td class="py-space-sm px-space-md font-bold text-on-surface">#REQ-4079</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">United Hospital Gulshan</span>
+<span class="font-body-sm text-body-sm text-secondary">Dialysis Center • Ward Sister Maya</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center justify-center w-10 h-7 rounded bg-surface-container text-on-surface font-headline-md text-headline-md font-bold shadow-xs">A-</span>
+</td>
+<td class="py-space-sm px-space-md text-right font-bold text-on-surface">2 Units</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-semibold uppercase tracking-wider">
+                    Standard
+                  </span>
+</td>
+<td class="py-space-sm px-space-md text-secondary whitespace-nowrap">Yesterday</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="process-btn px-space-md py-1.5 rounded-lg bg-secondary-container hover:bg-surface-container-high text-on-secondary-container font-label-md text-label-md font-bold shadow-xs transition-all active:scale-95 inline-flex items-center gap-1">
+<span>Process</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-space-md bg-surface-container-low/40 flex items-center justify-between text-secondary font-body-sm text-body-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+<span>Encrypted Sync: Active node dispatch port 443</span>
+</div>
+<div class="flex items-center gap-space-sm font-label-sm text-label-sm">
+<span>Showing 6 of 8 total</span>
+<div class="flex gap-1">
+<button class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[14px]">chevron_left</span>
+</button>
+<button class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-error-container text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]">emergency_heat</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Fast-Track Protocols</span>
+<span class="font-headline-md text-headline-md text-on-surface">STAT Blood Dispatch</span>
+<p class="font-body-sm text-body-sm text-secondary">Critical units bypass routine serology queue with physician counter-sign.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-secondary-container text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]">distance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Average Transit</span>
+<span class="font-headline-md text-headline-md text-on-surface">18.4 mins Delivery</span>
+<p class="font-body-sm text-body-sm text-secondary">Cold chain telemetry logged across all 6 connected district vans.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const form = document.getElementById('requisitionForm');
+    const tableBody = document.getElementById('tableBody');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const refreshBtn = document.getElementById('refreshTableBtn');
+    const refreshIcon = document.getElementById('refreshIcon');
+    const counterBadge = document.getElementById('requisitionCounter');
+
+    let totalCount = 8;
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-xs');
+          b.classList.add('text-secondary');
+        });
+        btn.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-xs');
+        btn.classList.remove('text-secondary');
+
+        const filter = btn.getAttribute('data-filter');
+        const rows = tableBody.querySelectorAll('.table-row');
+        
+        rows.forEach(row => {
+          if (filter === 'all' || row.getAttribute('data-urgency') === filter) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const hospital = document.getElementById('hospitalSelect').value;
+        const blood = document.getElementById('bloodGroupSelect').value;
+        const units = document.getElementById('unitsCount').value;
+        const physician = document.getElementById('physicianInfo').value;
+        const urgencyInput = document.querySelector('input[name="urgency_level"]:checked');
+        const urgency = urgencyInput ? urgencyInput.value : 'Critical';
+
+        const reqId = '#REQ-' + Math.floor(4092 + Math.random() * 50);
+
+        let urgencyPill = '';
+        let btnBg = 'bg-primary-container hover:bg-primary text-on-primary';
+        let bgTag = 'bg-surface-container text-on-surface';
+
+        if (urgency === 'Critical') {
+          urgencyPill = '<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-error-container text-primary font-label-sm text-label-sm font-bold uppercase tracking-wider shadow-xs"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>Critical</span>';
+          bgTag = 'bg-error-container text-primary';
+        } else if (urgency === 'Urgent') {
+          urgencyPill = '<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-amber-100 text-amber-900 font-label-sm text-label-sm font-bold uppercase tracking-wider"><span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>Urgent</span>';
+        } else {
+          urgencyPill = '<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-semibold uppercase tracking-wider">Standard</span>';
+          btnBg = 'bg-secondary-container hover:bg-surface-container-high text-on-secondary-container';
+        }
+
+        const newRow = document.createElement('tr');
+        newRow.className = 'table-row group hover:bg-surface-container-low/60 transition-colors animate-pulse';
+        newRow.setAttribute('data-urgency', urgency);
+        newRow.innerHTML = `
+          <td class="py-space-sm px-space-md font-bold text-on-surface">${reqId}</td>
+          <td class="py-space-sm px-space-md">
+            <div class="flex flex-col">
+              <span class="font-semibold text-on-surface">${hospital}</span>
+              <span class="font-body-sm text-body-sm text-secondary">${physician}</span>
+            </div>
+          </td>
+          <td class="py-space-sm px-space-md text-center">
+            <span class="inline-flex items-center justify-center w-10 h-7 rounded ${bgTag} font-headline-md text-headline-md font-bold shadow-xs">${blood}</span>
+          </td>
+          <td class="py-space-sm px-space-md text-right font-bold text-on-surface">${units} Units</td>
+          <td class="py-space-sm px-space-md">${urgencyPill}</td>
+          <td class="py-space-sm px-space-md text-secondary whitespace-nowrap">Just now</td>
+          <td class="py-space-sm px-space-md text-right">
+            <button class="process-btn px-space-md py-1.5 rounded-lg ${btnBg} font-label-md text-label-md font-bold shadow-xs transition-all active:scale-95 inline-flex items-center gap-1">
+              <span>Process</span>
+              <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+            </button>
+          </td>
+        `;
+
+        tableBody.insertBefore(newRow, tableBody.firstChild);
+        setTimeout(() => newRow.classList.remove('animate-pulse'), 1500);
+
+        totalCount++;
+        if (counterBadge) counterBadge.textContent = `${totalCount} Active Orders`;
+
+        form.reset();
+        document.getElementById('unitsCount').value = '4';
+      });
+    }
+
+    if (refreshBtn && refreshIcon) {
+      refreshBtn.addEventListener('click', () => {
+        refreshIcon.classList.add('animate-spin');
+        setTimeout(() => {
+          refreshIcon.classList.remove('animate-spin');
+        }, 600);
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.process-btn');
+      if (btn) {
+        const row = btn.closest('tr');
+        btn.textContent = 'Allocating...';
+        btn.disabled = true;
+        setTimeout(() => {
+          row.style.opacity = '0.4';
+          btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span> Dispatched';
+          btn.className = 'px-space-md py-1.5 rounded-lg bg-surface-container text-secondary font-label-md text-label-md inline-flex items-center gap-1 cursor-default';
+        }, 700);
+      }
+    });
+  })();
+</script></div></main></div></body></html>

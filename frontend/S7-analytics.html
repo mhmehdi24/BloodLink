@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-tertiary-fixed":"#001d31","primary-container":"#b91c1c","on-primary":"#ffffff","on-error":"#ffffff","on-secondary-container":"#57657a","outline":"#8f6f6c","primary":"#93000b","on-primary-container":"#ffcdc7","secondary-fixed":"#d5e3fc","on-primary-fixed-variant":"#93000b","tertiary":"#004a73","secondary-fixed-dim":"#b9c7df","background":"#faf8ff","tertiary-container":"#006397","surface-container-lowest":"#ffffff","on-error-container":"#93000a","surface-container-low":"#f2f3ff","secondary":"#515f74","on-surface":"#131b2e","tertiary-fixed-dim":"#93ccff","surface-container-highest":"#dae2fd","inverse-surface":"#283044","primary-fixed":"#ffdad6","surface-bright":"#faf8ff","surface-container-high":"#e2e7ff","surface-dim":"#d2d9f4","inverse-on-surface":"#eef0ff","outline-variant":"#e4beb9","on-surface-variant":"#5b403d","on-secondary-fixed":"#0d1c2e","on-primary-fixed":"#410002","error-container":"#ffdad6","on-background":"#131b2e","surface-variant":"#dae2fd","on-tertiary":"#ffffff","on-secondary":"#ffffff","primary-fixed-dim":"#ffb4ab","on-secondary-fixed-variant":"#3a485b","tertiary-fixed":"#cce5ff","on-tertiary-container":"#b8dcff","surface-tint":"#b91c1c","error":"#ba1a1a","inverse-primary":"#ffb4ab","surface-container":"#eaedff","on-tertiary-fixed-variant":"#004b73","secondary-container":"#d5e3fc","surface":"#faf8ff"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-lg":"1.5rem",gutter:"1.5rem","space-md":"1rem",margin:"2rem","space-sm":"0.5rem","space-xl":"2rem","gutter-sm":"1rem","margin-sm":"1rem","space-xs":"0.25rem"},fontFamily:{"body-lg":["Inter"],"headline-lg-mobile":["Inter"],"headline-lg":["Inter"],"data-table":["Inter"],"body-md":["Inter"],"data-metric":["Inter"],"headline-xl-mobile":["Inter"],"label-sm":["Inter"],"label-lg":["Inter"],"label-md":["Inter"],"headline-xl":["Inter"],"headline-md":["Inter"],"body-sm":["Inter"]},fontSize:{"body-lg":["1rem",{lineHeight:"1.5rem",letterSpacing:"0em",fontWeight:"400"}],"headline-lg-mobile":["1.25rem",{lineHeight:"1.75rem",letterSpacing:"-0.015em",fontWeight:"600"}],"headline-lg":["1.5rem",{lineHeight:"2rem",letterSpacing:"-0.02em",fontWeight:"600"}],"data-table":["0.8125rem",{lineHeight:"1.25rem",letterSpacing:"0em",fontWeight:"400"}],"body-md":["0.875rem",{lineHeight:"1.25rem",letterSpacing:"0em",fontWeight:"400"}],"data-metric":["2rem",{lineHeight:"2.25rem",letterSpacing:"-0.03em",fontWeight:"700"}],"headline-xl-mobile":["1.75rem",{lineHeight:"2.25rem",letterSpacing:"-0.02em",fontWeight:"700"}],"label-sm":["0.6875rem",{lineHeight:"0.875rem",letterSpacing:"0.04em",fontWeight:"600"}],"label-lg":["0.875rem",{lineHeight:"1.25rem",letterSpacing:"-0.005em",fontWeight:"600"}],"label-md":["0.75rem",{lineHeight:"1rem",letterSpacing:"0.02em",fontWeight:"600"}],"headline-xl":["2.25rem",{lineHeight:"2.75rem",letterSpacing:"-0.025em",fontWeight:"700"}],"headline-md":["1.125rem",{lineHeight:"1.5rem",letterSpacing:"-0.01em",fontWeight:"600"}],"body-sm":["0.75rem",{lineHeight:"1rem",letterSpacing:"0.01em",fontWeight:"400"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WVDMs83KaQFQeQuXMHAAeYM0576E5vu9SlMjpjHvnoglOq6inI72VYpMz4fbrcODA2yc5bM4iXETIdhhVqD5LDlgkFY56TCS9nobBFyRXgxIZARqSqxNat8-SEwDdU3GdD4cjfLwIAxf1WSzWfH8IHcR-zt-mUQX6wCcjtlGvLxkxvQnkSEvVqz6dbfDX_htHxNFMyaA5F4jZVF3-lcgg-VLRfkGBKAM8lyEhNwW9BL-EVHd6JJd4"/><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-on-surface leading-none">BloodLink</span><span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider leading-tight">Blood Bank Management System</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider">Central Hub</span></div><div class="hidden md:flex items-center gap-space-sm font-label-md text-label-md text-secondary"><span class="material-symbols-outlined text-[18px]">schedule</span><span class="font-data-table text-data-table text-on-surface font-medium">UTC 14:32:08</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">SINGLE OPERATOR</span></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-[260px] bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex flex-col justify-between py-space-md"><div class="flex flex-col gap-space-md"><div class="px-space-md font-label-sm text-label-sm text-secondary uppercase tracking-widest">Primary Navigation</div><nav class="flex flex-col gap-space-xs px-space-xs" data-active-classes="bg-error-container text-primary font-bold border-l-4 border-primary-container pl-[calc(1rem-4px)]"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="patient-log" href="#"><span class="material-symbols-outlined text-[20px]">assignment</span><span>Patient Log</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="donor-registry" href="#"><span class="material-symbols-outlined text-[20px]">group</span><span>Donor Registry</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="intake-control" href="#"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span>Intake Control</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="hub-requests" href="#"><span class="material-symbols-outlined text-[20px]">domain</span><span>Hub Requests</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="match-and-dispatch" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span>Match & Dispatch</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg transition-all bg-error-container text-primary font-bold border-l-4 border-primary-container pl-[calc(1rem-4px)]" data-path="analytics" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span>Analytics</span></a></nav></div><div class="px-space-md py-space-sm mx-space-xs rounded-xl bg-surface-container-low flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-secondary uppercase">Active Node</span><span class="font-label-md text-label-md text-on-surface font-semibold">Unit Terminal-01</span></div><span class="w-2.5 h-2.5 rounded-full bg-tertiary-container"></span></div></aside><div class="pl-[260px]"><main class="relative pt-16 min-h-screen bg-surface"><div class="max-w-[1400px] mx-auto p-margin"><div class="flex flex-col w-full gap-space-lg">
+<!-- Top Control Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Executive Intelligence</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">QA / QC Division</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-0.5">Blood Bank Analytics & Quality Control</h1>
+<p class="font-body-md text-body-md text-secondary">Track inventory turnover, expiration rate, and institutional dispatch performance</p>
+</div>
+<!-- Date Range Filter Tabs -->
+<div class="flex flex-wrap items-center gap-space-xs bg-surface-container-low p-1 rounded-lg">
+<div class="flex items-center px-space-xs text-secondary">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</div>
+<button class="analytics-filter-btn px-space-md py-1.5 rounded font-label-md text-label-md transition-colors bg-primary-container text-on-primary font-bold shadow-sm" data-range="30" type="button">
+        Last 30 days
+      </button>
+<button class="analytics-filter-btn px-space-md py-1.5 rounded font-label-md text-label-md text-secondary hover:text-on-surface transition-colors" data-range="90" type="button">
+        Last 90 days
+      </button>
+<button class="analytics-filter-btn px-space-md py-1.5 rounded font-label-md text-label-md text-secondary hover:text-on-surface transition-colors" data-range="all" type="button">
+        All time
+      </button>
+<div class="h-4 w-[1px] bg-outline-variant mx-1 hidden sm:block"></div>
+<button class="flex items-center gap-1 px-space-sm py-1.5 rounded font-label-md text-label-md text-secondary hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Export Report</span>
+</button>
+</div>
+</div>
+<!-- Charts Row: Two Large Responsive Cards -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-space-lg">
+<!-- Card 1: Wastage Trend Line Chart -->
+<div class="flex flex-col bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden">
+<div class="flex items-start justify-between gap-space-md mb-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="font-headline-md text-headline-md text-on-surface">Wastage % over last 6 months</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">Month-over-month discard rate vs. national safety threshold</p>
+</div>
+<div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface text-label-sm font-label-sm font-semibold">
+<span class="material-symbols-outlined text-primary text-[14px]">trending_down</span>
+<span class="text-primary font-bold">-1.3%</span>
+<span class="text-secondary">reduction in 6m</span>
+</div>
+</div>
+<!-- Chart Metadata Pill Indicators -->
+<div class="flex items-center gap-space-md mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-0.5 bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-secondary">Actual Discard Rate</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-0.5 border-t border-dashed border-error"></span>
+<span class="font-label-sm text-label-sm text-secondary">QA Ceiling (3.0% Max)</span>
+</div>
+<div class="ml-auto font-label-sm text-label-sm text-secondary font-medium">
+          Current: <strong class="text-on-surface font-bold">2.1%</strong> (Optimal)
+        </div>
+</div>
+<!-- SVG Line Chart Container -->
+<div class="w-full relative h-[250px] flex items-end">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 600 240">
+<defs>
+<lineargradient id="wastageAreaGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#b91c1c" stop-opacity="0.22"></stop>
+<stop offset="100%" stop-color="#b91c1c" stop-opacity="0.0"></stop>
+</lineargradient>
+<lineargradient id="lineGrad" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0%" stop-color="#93000b"></stop>
+<stop offset="100%" stop-color="#b91c1c"></stop>
+</lineargradient>
+</defs>
+<!-- Horizontal Reference Gridlines -->
+<!-- 4.0% at Y=30 -->
+<line stroke="#eaedff" stroke-width="1" x1="40" x2="580" y1="30" y2="30"></line>
+<text fill="#515f74" font-family="Inter" font-size="10" text-anchor="end" x="32" y="34">4.0%</text>
+<!-- 3.0% Threshold line at Y=85 -->
+<line stroke="#ba1a1a" stroke-dasharray="4 4" stroke-opacity="0.8" stroke-width="1.5" x1="40" x2="580" y1="85" y2="85"></line>
+<text fill="#ba1a1a" font-family="Inter" font-size="10" font-weight="600" text-anchor="end" x="32" y="89">3.0%</text>
+<text fill="#ba1a1a" font-family="Inter" font-size="9" font-weight="600" text-anchor="end" x="575" y="78">CEILING THRESHOLD</text>
+<!-- 2.0% at Y=140 -->
+<line stroke="#eaedff" stroke-width="1" x1="40" x2="580" y1="140" y2="140"></line>
+<text fill="#515f74" font-family="Inter" font-size="10" text-anchor="end" x="32" y="144">2.0%</text>
+<!-- 1.0% at Y=195 -->
+<line stroke="#eaedff" stroke-width="1" x1="40" x2="580" y1="195" y2="195"></line>
+<text fill="#515f74" font-family="Inter" font-size="10" text-anchor="end" x="32" y="199">1.0%</text>
+<!-- Baseline 0% at Y=220 -->
+<line stroke="#d5e3fc" stroke-width="1" x1="40" x2="580" y1="220" y2="220"></line>
+<!-- Data Points Coords:
+               May: 3.4% -> X=75, Y=63
+               Jun: 2.9% -> X=172, Y=90
+               Jul: 2.7% -> X=269, Y=101
+               Aug: 2.3% -> X=366, Y=123
+               Sep: 2.5% -> X=463, Y=112
+               Oct: 2.1% -> X=560, Y=134
+          -->
+<!-- Area fill -->
+<path d="M75,63 L172,90 L269,101 L366,123 L463,112 L560,134 L560,220 L75,220 Z" fill="url(#wastageAreaGrad)"></path>
+<!-- Trend Stroke -->
+<path d="M75,63 L172,90 L269,101 L366,123 L463,112 L560,134" fill="none" stroke="url(#lineGrad)" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+<!-- Interactive Node Dots & Labels -->
+<!-- May -->
+<circle cx="75" cy="63" fill="#ffffff" r="4.5" stroke="#93000b" stroke-width="2.5"></circle>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="75" y="52">3.4%</text>
+<text fill="#515f74" font-family="Inter" font-size="11" text-anchor="middle" x="75" y="235">MAY</text>
+<!-- Jun -->
+<circle cx="172" cy="90" fill="#ffffff" r="4.5" stroke="#93000b" stroke-width="2.5"></circle>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="172" y="79">2.9%</text>
+<text fill="#515f74" font-family="Inter" font-size="11" text-anchor="middle" x="172" y="235">JUN</text>
+<!-- Jul -->
+<circle cx="269" cy="101" fill="#ffffff" r="4.5" stroke="#93000b" stroke-width="2.5"></circle>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="269" y="90">2.7%</text>
+<text fill="#515f74" font-family="Inter" font-size="11" text-anchor="middle" x="269" y="235">JUL</text>
+<!-- Aug -->
+<circle cx="366" cy="123" fill="#ffffff" r="4.5" stroke="#93000b" stroke-width="2.5"></circle>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="366" y="112">2.3%</text>
+<text fill="#515f74" font-family="Inter" font-size="11" text-anchor="middle" x="366" y="235">AUG</text>
+<!-- Sep -->
+<circle cx="463" cy="112" fill="#ffffff" r="4.5" stroke="#93000b" stroke-width="2.5"></circle>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="463" y="101">2.5%</text>
+<text fill="#515f74" font-family="Inter" font-size="11" text-anchor="middle" x="463" y="235">SEP</text>
+<!-- Oct (Current) -->
+<circle cx="560" cy="134" fill="#b91c1c" r="6" stroke="#ffffff" stroke-width="2"></circle>
+<circle class="animate-ping" cx="560" cy="134" fill="none" r="9" stroke="#b91c1c" stroke-opacity="0.4" stroke-width="1.5"></circle>
+<text fill="#93000b" font-family="Inter" font-size="12" font-weight="700" text-anchor="middle" x="560" y="122">2.1%</text>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="560" y="235">OCT</text>
+</svg>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-secondary font-label-sm text-label-sm">
+<span>Lowest point recorded: October (2.1%)</span>
+<span class="text-tertiary">Benchmark standard: AABB/WHO compliant</span>
+</div>
+</div>
+<!-- Card 2: Dispatch Volume by Blood Type Bar Chart -->
+<div class="flex flex-col bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden">
+<div class="flex items-start justify-between gap-space-md mb-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-headline-md text-headline-md text-on-surface">Dispatch Volume by Blood Type</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">Dispatched units aggregated across all 8 major phenotypical groups</p>
+</div>
+<div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-error-container text-primary text-label-sm font-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+<span>Peak: O+ (245 Units)</span>
+</div>
+</div>
+<!-- Chart Metadata Legend -->
+<div class="flex items-center gap-space-md mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-secondary">High Demand (≥140)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-secondary">Moderate (50-139)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-secondary-fixed-dim"></span>
+<span class="font-label-sm text-label-sm text-secondary">Rare (<50)</span>
+</div>
+</div>
+<!-- SVG Bar Chart Container -->
+<div class="w-full relative h-[250px] flex items-end">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 600 240">
+<!-- Background reference grid -->
+<line stroke="#eaedff" stroke-width="1" x1="40" x2="580" y1="30" y2="30"></line>
+<text fill="#515f74" font-family="Inter" font-size="10" text-anchor="end" x="32" y="34">250</text>
+<line stroke="#eaedff" stroke-width="1" x1="40" x2="580" y1="90" y2="90"></line>
+<text fill="#515f74" font-family="Inter" font-size="10" text-anchor="end" x="32" y="94">175</text>
+<line stroke="#eaedff" stroke-width="1" x1="40" x2="580" y1="150" y2="150"></line>
+<text fill="#515f74" font-family="Inter" font-size="10" text-anchor="end" x="32" y="154">100</text>
+<line stroke="#d5e3fc" stroke-width="1" x1="40" x2="580" y1="210" y2="210"></line>
+<!-- Bars:
+               Width = 36px, Spacing = 64px
+               Baseline Y = 210
+               Scaling: Max 250 units = 180px height (0.72 px/unit)
+               
+               1. A+  (142 units) -> H = 102.2 -> Y = 107.8 (X=65)
+               2. A-  (48 units)  -> H = 34.6  -> Y = 175.4 (X=130)
+               3. B+  (186 units) -> H = 133.9 -> Y = 76.1  (X=195)
+               4. B-  (32 units)  -> H = 23.0  -> Y = 187.0 (X=260)
+               5. AB+ (64 units)  -> H = 46.1  -> Y = 163.9 (X=325)
+               6. AB- (18 units)  -> H = 13.0  -> Y = 197.0 (X=390)
+               7. O+  (245 units) -> H = 176.4 -> Y = 33.6  (X=455)
+               8. O-  (88 units)  -> H = 63.4  -> Y = 146.6 (X=520)
+          -->
+<!-- Bar 1: A+ (142) -->
+<rect class="hover:opacity-90 transition-opacity" fill="#b91c1c" height="102" rx="3" width="36" x="65" y="108"></rect>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="83" y="100">142</text>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="83" y="227">A+</text>
+<!-- Bar 2: A- (48) -->
+<rect class="hover:opacity-90 transition-opacity" fill="#b9c7df" height="35" rx="3" width="36" x="130" y="175"></rect>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="148" y="167">48</text>
+<text fill="#515f74" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="148" y="227">A-</text>
+<!-- Bar 3: B+ (186) -->
+<rect class="hover:opacity-90 transition-opacity" fill="#b91c1c" height="134" rx="3" width="36" x="195" y="76"></rect>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="213" y="68">186</text>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="213" y="227">B+</text>
+<!-- Bar 4: B- (32) -->
+<rect class="hover:opacity-90 transition-opacity" fill="#b9c7df" height="23" rx="3" width="36" x="260" y="187"></rect>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="278" y="179">32</text>
+<text fill="#515f74" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="278" y="227">B-</text>
+<!-- Bar 5: AB+ (64) -->
+<rect class="hover:opacity-90 transition-opacity" fill="#515f74" height="46" rx="3" width="36" x="325" y="164"></rect>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="343" y="156">64</text>
+<text fill="#515f74" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="343" y="227">AB+</text>
+<!-- Bar 6: AB- (18) -->
+<rect class="hover:opacity-90 transition-opacity" fill="#b9c7df" height="13" rx="3" width="36" x="390" y="197"></rect>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="408" y="189">18</text>
+<text fill="#515f74" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="408" y="227">AB-</text>
+<!-- Bar 7: O+ (245) - Highest -->
+<rect class="hover:opacity-90 transition-opacity" fill="#93000b" height="176" rx="3" width="36" x="455" y="34"></rect>
+<text fill="#93000b" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="473" y="26">245</text>
+<text fill="#93000b" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="473" y="227">O+</text>
+<!-- Bar 8: O- (88) -->
+<rect class="hover:opacity-90 transition-opacity" fill="#515f74" height="63" rx="3" width="36" x="520" y="147"></rect>
+<text fill="#131b2e" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="538" y="139">88</text>
+<text fill="#515f74" font-family="Inter" font-size="11" font-weight="600" text-anchor="middle" x="538" y="227">O-</text>
+</svg>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-secondary font-label-sm text-label-sm">
+<span>Total Dispatched: <strong class="text-on-surface font-semibold">823 Units</strong></span>
+<span class="text-primary font-medium">Universal Donor (O-): 88 Units Dispatched</span>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Key Stat Cards (4 cards across) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Stat 1: Total Donations -->
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm justify-between gap-space-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">Total Donations</span>
+<div class="w-9 h-9 rounded-full bg-error-container text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-data-metric text-data-metric text-on-surface tracking-tight">864</span>
+<span class="font-body-md text-body-md text-secondary font-medium">Units</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-emerald-700 font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+<span>+12.4% vs last period</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 78%;"></div>
+</div>
+</div>
+<!-- Stat 2: Total Dispatched -->
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm justify-between gap-space-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">Total Dispatched</span>
+<div class="w-9 h-9 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-data-metric text-data-metric text-on-surface tracking-tight">823</span>
+<span class="font-body-md text-body-md text-secondary font-medium">Units</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px] text-tertiary-container">task_alt</span>
+<span>95.2% fulfillment rate</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 95.2%;"></div>
+</div>
+</div>
+<!-- Stat 3: Total Discarded -->
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm justify-between gap-space-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">Total Discarded</span>
+<div class="w-9 h-9 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">delete</span>
+</div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-data-metric text-data-metric text-on-surface tracking-tight">18</span>
+<span class="font-body-md text-body-md text-secondary font-medium">Units</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-emerald-700 font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span>2.1% wastage rate — below 3.0%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-amber-600 h-full rounded-full" style="width: 21%;"></div>
+</div>
+</div>
+<!-- Stat 4: Active Donors -->
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm justify-between gap-space-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">Active Donors</span>
+<div class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">group</span>
+</div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-data-metric text-data-metric text-on-surface tracking-tight">1,420</span>
+<span class="font-body-md text-body-md text-secondary font-medium">Donors</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-emerald-700 font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">person_add</span>
+<span>64 new registrations this month</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-emerald-600 h-full rounded-full" style="width: 84%;"></div>
+</div>
+</div>
+</div>
+<!-- Detailed Institutional Breakdown Section -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-space-lg">
+<!-- Left 2 Cols: Institutional Dispatch Table -->
+<div class="xl:col-span-2 flex flex-col bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">local_hospital</span>
+<span class="font-headline-md text-headline-md text-on-surface">Top Dispatched Healthcare Institutions</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">High-volume recipient clinical networks and triage emergency wings</p>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container-low px-space-sm py-1 rounded">Ranked by Volume</span>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left font-data-table text-data-table border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-2.5 px-space-md font-semibold">Rank</th>
+<th class="py-2.5 px-space-md font-semibold">Healthcare Facility</th>
+<th class="py-2.5 px-space-md font-semibold">Dispatch Count</th>
+<th class="py-2.5 px-space-md font-semibold">% of Total</th>
+<th class="py-2.5 px-space-md font-semibold">Priority Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-on-surface">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-semibold text-secondary">#01</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded bg-error-container text-primary font-bold flex items-center justify-center text-xs">DM</span>
+<div>
+<div class="font-semibold text-on-surface">Dhaka Medical College Hospital (DMCH)</div>
+<div class="font-body-sm text-body-sm text-secondary">Level-1 Trauma & Emergency Surgery</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md font-bold text-on-surface">312 <span class="font-normal text-secondary">Units</span></td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-2">
+<div class="w-16 bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 37.9%;"></div>
+</div>
+<span class="text-xs font-semibold text-secondary">37.9%</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-primary font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                  Critical Hub
+                </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-semibold text-secondary">#02</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded bg-secondary-container text-on-secondary-container font-bold flex items-center justify-center text-xs">BS</span>
+<div>
+<div class="font-semibold text-on-surface">BSMMU Research Hospital</div>
+<div class="font-body-sm text-body-sm text-secondary">Specialized Hematology & Oncology</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md font-bold text-on-surface">184 <span class="font-normal text-secondary">Units</span></td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-2">
+<div class="w-16 bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 22.3%;"></div>
+</div>
+<span class="text-xs font-semibold text-secondary">22.3%</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold">
+                  Regular Priority
+                </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-semibold text-secondary">#03</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded bg-tertiary-fixed text-on-tertiary-fixed font-bold flex items-center justify-center text-xs">NI</span>
+<div>
+<div class="font-semibold text-on-surface">National Institute of Cardiovascular Diseases (NICVD)</div>
+<div class="font-body-sm text-body-sm text-secondary">Cardiothoracic Surgery & CCU</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md font-bold text-on-surface">142 <span class="font-normal text-secondary">Units</span></td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-2">
+<div class="w-16 bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 17.2%;"></div>
+</div>
+<span class="text-xs font-semibold text-secondary">17.2%</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold">
+                  Regular Priority
+                </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-semibold text-secondary">#04</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded bg-surface-container-high text-on-surface font-bold flex items-center justify-center text-xs">SQ</span>
+<div>
+<div class="font-semibold text-on-surface">Square Hospitals Ltd.</div>
+<div class="font-body-sm text-body-sm text-secondary">Private Critical Care & Maternity</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md font-bold text-on-surface">98 <span class="font-normal text-secondary">Units</span></td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-2">
+<div class="w-16 bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary-fixed-dim h-full rounded-full" style="width: 11.9%;"></div>
+</div>
+<span class="text-xs font-semibold text-secondary">11.9%</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold">
+                  Scheduled
+                </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-semibold text-secondary">#05</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded bg-surface-container text-secondary font-bold flex items-center justify-center text-xs">+</span>
+<div>
+<div class="font-semibold text-on-surface">Others (12 Clinics & Emergency Hubs)</div>
+<div class="font-body-sm text-body-sm text-secondary">Secondary Municipal Network Facilities</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md font-bold text-on-surface">87 <span class="font-normal text-secondary">Units</span></td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-2">
+<div class="w-16 bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary-container h-full rounded-full" style="width: 10.5%;"></div>
+</div>
+<span class="text-xs font-semibold text-secondary">10.5%</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold">
+                  Variable
+                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right 1 Col: Quality Auditing & Storage Cold-Chain Card -->
+<div class="flex flex-col bg-surface-container-lowest p-space-lg rounded-xl shadow-sm justify-between gap-space-md">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-on-surface">Quality & Cold-Chain</span>
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">Real-time sensory telemetry and batch quarantine metrics</p>
+<!-- Temperature Gauge Box -->
+<div class="mt-space-md p-space-md bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-tertiary text-[28px]">thermostat</span>
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase block">Cold Room Vault A</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">3.8°C</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm font-semibold">Safe (2°C - 6°C)</span>
+</div>
+<!-- Metric mini-bars -->
+<div class="mt-space-md flex flex-col gap-space-sm">
+<div class="flex justify-between items-center text-body-sm font-body-sm">
+<span class="text-secondary">Viral Screening Clearance Rate</span>
+<span class="font-semibold text-on-surface">99.88%</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-600 h-full rounded-full" style="width: 99.88%;"></div>
+</div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mt-1">
+<span class="text-secondary">Crossmatch Compatibility Index</span>
+<span class="font-semibold text-on-surface">98.40%</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 98.4%;"></div>
+</div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mt-1">
+<span class="text-secondary">Cold-Chain Transit Compliance</span>
+<span class="font-semibold text-on-surface">100.0%</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+</div>
+<!-- Quick Action / Compliance Stamp -->
+<div class="p-space-sm bg-surface-container-high rounded flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">QA Audit Validated</span>
+<span class="text-[10px] text-secondary">Chief Hematologist ID: QC-8941</span>
+</div>
+</div>
+<button class="px-space-sm py-1 bg-surface-container-lowest text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container transition-colors shadow-sm font-semibold" type="button">
+          Review Log
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Filter Button Interactive Toggle
+  document.querySelectorAll('.analytics-filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.analytics-filter-btn').forEach(b => {
+        b.classList.remove('bg-primary-container', 'text-on-primary', 'font-bold', 'shadow-sm');
+        b.classList.add('text-secondary');
+      });
+      this.classList.remove('text-secondary');
+      this.classList.add('bg-primary-container', 'text-on-primary', 'font-bold', 'shadow-sm');
+    });
+  });
+</script></div></main></div></body></html>
