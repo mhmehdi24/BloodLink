@@ -181,6 +181,108 @@ def create_inventory():
             "ExpiryDate": expiry_date.isoformat(),
         }), 201
     finally:
-        conn.close()       
+        conn.close() 
+        # ------------------------------------------------------------
+# PATCH /api/inventory/<id> — soft-delete or status update
+# ------------------------------------------------------------
+@app.route("/api/inventory/<int:unit_id>", methods=["PATCH"])
+def update_inventory(unit_id):
+    """Update a bag's status. Valid: Active, Dispatched, Discarded."""
+    data = request.get_json(silent=True) or {}
+    new_status = data.get("Status")
+
+    if new_status not in ("Active", "Dispatched", "Discarded"):
+        return jsonify({
+            "error": "Invalid status",
+            "allowed": ["Active", "Dispatched", "Discarded"],
+        }), 400
+
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "UPDATE Blood_Inventory SET Status = %s WHERE UnitID = %s",
+                (new_status, unit_id),
+            )
+            if cursor.rowcount == 0:
+                conn.rollback()
+                return jsonify({"error": "Unit not found", "UnitID": unit_id}), 404
+        conn.commit()
+        return jsonify({"message": "Status updated", "UnitID": unit_id, "Status": new_status})
+    finally:
+        conn.close()
+
+
+# ------------------------------------------------------------
+# GET /api/requisitions — list hospital requisitions
+# ------------------------------------------------------------
+@app.route("/api/requisitions", methods=["GET"])
+def list_requisitions():
+    """Return all requisitions. Optional ?status=Pending|Approved|Fulfilled|Rejected."""
+    status = request.args.get("status")
+
+    sql = (
+        "SELECT RequisitionID, HospitalID, BloodTypeNeeded, UnitsRequired, "
+        "UrgencyLevel, Status, RequestedAt "
+        "FROM Hospital_Requisitions"
+    )
+    params = ()
+    if status:
+        sql += " WHERE Status = %s"
+        params = (status,)
+    sql += " ORDER BY RequestedAt ASC"
+
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(sql, params)
+            rows = cursor.fetchall()
+        return jsonify(rows)
+    finally:
+        conn.close()
+
+
+# ------------------------------------------------------------
+# POST /api/requisitions — create a hospital requisition
+# ------------------------------------------------------------
+@app.route("/api/requisitions", methods=["POST"])
+def create_requisition():
+    """Create a new hospital requisition (emergency blood request)."""
+    data = request.get_json(silent=True) or {}
+
+    required = ["HospitalID", "BloodTypeNeeded", "UnitsRequired"]
+    missing = [f for f in required if not data.get(f)]
+    if missing:
+        return jsonify({"error": "Missing fields", "fields": missing}), 400
+
+    try:
+        units = int(data["UnitsRequired"])
+        if units <= 0:
+            raise ValueError
+    except (ValueError, TypeError):
+        return jsonify({"error": "UnitsRequired must be a positive integer"}), 400
+
+    urgency = data.get("UrgencyLevel", "Standard")
+    if urgency not in ("Standard", "Urgent", "Critical"):
+        return jsonify({"error": "UrgencyLevel must be Standard, Urgent, or Critical"}), 400
+
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "INSERT INTO Hospital_Requisitions "
+                "(HospitalID, BloodTypeNeeded, UnitsRequired, UrgencyLevel, Status) "
+                "VALUES (%s, %s, %s, %s, %s)",
+                (data["HospitalID"], data["BloodTypeNeeded"], units, urgency, "Pending"),
+            )
+            new_id = cursor.lastrowid
+        conn.commit()
+        return jsonify({
+            "message": "Requisition created",
+            "RequisitionID": new_id,
+            "Status": "Pending",
+        }), 201
+    finally:
+        conn.close()      
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
