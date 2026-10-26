@@ -16,6 +16,20 @@ app = Flask(__name__)
 CORS(app)  # Allow the frontend to call this API
 
 
+# Custom JSON encoder so dates serialize as YYYY-MM-DD (not HTTP-date)
+from flask.json.provider import DefaultJSONProvider
+from datetime import date as _date, datetime as _datetime
+
+class BloodLinkJSONProvider(DefaultJSONProvider):
+    @staticmethod
+    def default(o):
+        if isinstance(o, (_date, _datetime)):
+            return o.isoformat()
+        return DefaultJSONProvider.default(o)
+
+app.json = BloodLinkJSONProvider(app)
+
+
 # ------------------------------------------------------------
 # Health check
 # ------------------------------------------------------------
