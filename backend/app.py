@@ -283,6 +283,97 @@ def create_requisition():
             "Status": "Pending",
         }), 201
     finally:
-        conn.close()      
+        conn.close()   
+        # ------------------------------------------------------------
+# GET /api/match/<requisition_id> — FIFO dispatch algorithm
+# ------------------------------------------------------------
+@app.route("/api/match/<int:requisition_id>", methods=["GET"])
+def match_requisition(requisition_id):
+    """Find compatible active bags for a requisition, ordered by FIFO (expiry ASC)."""
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            # Step 1: fetch the requisition
+            cursor.execute(
+                "SELECT RequisitionID, HospitalID, BloodTypeNeeded, UnitsRequired, "
+                "UrgencyLevel, Status FROM Hospital_Requisitions WHERE RequisitionID = %s",
+                (requisition_id,),
+            )
+            req = cursor.fetchone()
+
+            if not req:
+                return jsonify({"error": "Requisition not found", "RequisitionID": requisition_id}), 404
+
+            if req["Status"] != "Pending":
+                return jsonify({
+                    "error": "Requisition is not Pending",
+                    "current_status": req["Status"],
+                }), 400
+
+            # Step 2: FIFO query — compatible active bags, oldest expiry first
+            cursor.execute(
+                "SELECT UnitID, BagCode, BloodType, ExpiryDate, StorageLocation "
+                "FROM Blood_Inventory "
+                "WHERE BloodType = %s AND Status = 'Active' "
+                "ORDER BY ExpiryDate ASC "
+                "LIMIT %s",
+                (req["BloodTypeNeeded"], req["UnitsRequired"]),
+            )
+            bags = cursor.fetchall()
+
+        return jsonify({
+            "requisition": req,
+            "matches": bags,
+            "matched_count": len(bags),
+            "requested_count": req["UnitsRequired"],
+        })
+    finally:
+        conn.close()
+
+
+# ------------------------------------------------------------
+# GET /api/analytics/wastage — aggregate wastage stats
+# ------------------------------------------------------------
+@app.route("/api/analytics/wastage", methods=["GET"])
+def analytics_wastage():
+    """Return aggregate stock and wastage metrics."""
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            # Per-status counts
+            cursor.execute(
+                "SELECT Status, COUNT(*) AS cnt "
+                "FROM Blood_Inventory GROUP BY Status"
+            )
+            status_counts = {row["Status"]: row["cnt"] for row in cursor.fetchall()}
+
+            active = status_counts.get("Active", 0)
+            dispatched = status_counts.get("Dispatched", 0)
+            discarded = status_counts.get("Discarded", 0)
+            total = active + dispatched + discarded
+
+            # Wastage percentage
+            wastage_pct = round((discarded / total * 100), 2) if total > 0 else 0.0
+
+            # Stock by blood type (Active only)
+            cursor.execute(
+                "SELECT BloodType, COUNT(*) AS cnt "
+                "FROM Blood_Inventory WHERE Status = 'Active' "
+                "GROUP BY BloodType ORDER BY BloodType"
+            )
+            stock_by_type = cursor.fetchall()
+
+        return jsonify({
+            "totals": {
+                "active": active,
+                "dispatched": dispatched,
+                "discarded": discarded,
+                "grand_total": total,
+            },
+            "wastage_percentage": wastage_pct,
+            "stock_by_blood_type": stock_by_type,
+        })
+    finally:
+        conn.close()   
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
