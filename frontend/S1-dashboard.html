@@ -549,5 +549,41 @@
 </div>
 </div>
 <script src="api.js"></script>
+<script>
+    window.addEventListener("load", () => {
+        setTimeout(async () => {
+            try {
+                // Fetch all the data
+                const analytics = await api.get("/api/analytics/wastage");
+                const reqs = await api.get("/api/requisitions?status=Pending");
+                
+                // Update the Title
+                const h1 = document.querySelector('h1');
+                if (h1) h1.innerHTML = `Live: ${analytics.totals.active} Units | ${analytics.wastage_percentage}% Wasted`;
+
+                // Update KPI Cards (using specific text matching)
+                const cards = document.querySelectorAll('.text-4xl, .text-3xl, .text-5xl');
+                
+                if (cards.length >= 4) {
+                    // Card 1: Units in Stock
+                    cards[0].innerHTML = `${analytics.totals.active} <span class="text-sm">Bags</span>`;
+                    
+                    // Card 2: Expiring (Mocked to 0 for now)
+                    cards[1].innerHTML = `0 <span class="text-sm">Units</span>`;
+                    
+                    // Card 3: Pending Requests
+                    cards[2].innerHTML = `${reqs.length} <span class="text-sm">Requisitions</span>`;
+                    
+                    // Card 4: Wastage %
+                    cards[3].innerHTML = `${analytics.wastage_percentage.toFixed(1)}%`;
+                }
+                
+                console.log("Dashboard KPIs updated successfully!");
+            } catch (err) {
+                console.error("Error updating dashboard:", err);
+            }
+        }, 500);
+    });
+</script>
 </body>
-</div></div></main></div></body></html>
+</html>
