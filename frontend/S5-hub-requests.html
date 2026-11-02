@@ -513,5 +513,36 @@
   })();
 </script>
 <script src="api.js"></script>
+<script>
+window.addEventListener("load", () => {
+    setTimeout(async () => {
+        try {
+            // 1. Load existing requisitions
+            const reqs = await api.get("/api/requisitions");
+            console.log("Loaded requisitions:", reqs);
+
+            // 2. Try to render in tbody
+            const tbody = document.querySelector('tbody');
+            if (tbody) {
+                tbody.innerHTML = reqs.map(r => `
+                    <tr class="border-b">
+                        <td class="py-3 px-4">#${r.RequisitionID}</td>
+                        <td class="py-3 px-4">Hospital ${r.HospitalID}</td>
+                        <td class="py-3 px-4">${r.BloodTypeNeeded}</td>
+                        <td class="py-3 px-4">${r.UnitsRequired}</td>
+                        <td class="py-3 px-4">${r.UrgencyLevel}</td>
+                        <td class="py-3 px-4">${r.Status}</td>
+                    </tr>
+                `).join('');
+                console.log("Rendered", reqs.length, "requisition rows");
+            } else {
+                console.log("No tbody found — this page uses div-based layout");
+            }
+        } catch (err) {
+            console.error("Hub requests load failed:", err);
+        }
+    }, 800);
+});
+</script>
 </body>
 </div></main></div></body></html>
