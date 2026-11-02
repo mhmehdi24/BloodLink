@@ -389,5 +389,54 @@ def analytics_wastage():
         })
     finally:
         conn.close()   
+        # ------------------------------------------------------------
+# GET /api/patients — list all patient cases
+# ------------------------------------------------------------
+@app.route("/api/patients", methods=["GET"])
+def list_patients():
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "SELECT CaseID, PatientName, BloodTypeNeeded, UnitsRequired, "
+                "DirectedDonorID, Status, OpenedAt "
+                "FROM Patient_Cases ORDER BY OpenedAt DESC"
+            )
+            rows = cursor.fetchall()
+        return jsonify(rows)
+    finally:
+        conn.close()
+
+# ------------------------------------------------------------
+# POST /api/patients — create a new patient case
+# ------------------------------------------------------------
+@app.route("/api/patients", methods=["POST"])
+def create_patient():
+    data = request.get_json(silent=True) or {}
+    
+    required = ["PatientName", "BloodTypeNeeded", "UnitsRequired"]
+    missing = [f for f in required if not data.get(f)]
+    if missing:
+        return jsonify({"error": "Missing fields", "fields": missing}), 400
+
+    try:
+        units = int(data["UnitsRequired"])
+        if units <= 0: raise ValueError
+    except (ValueError, TypeError):
+        return jsonify({"error": "UnitsRequired must be a positive integer"}), 400
+
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "INSERT INTO Patient_Cases (PatientName, BloodTypeNeeded, UnitsRequired, DirectedDonorID, Status) "
+                "VALUES (%s, %s, %s, %s, 'Open')",
+                (data["PatientName"], data["BloodTypeNeeded"], units, data.get("DirectedDonorID"))
+            )
+            new_id = cursor.lastrowid
+        conn.commit()
+        return jsonify({"message": "Patient case created", "CaseID": new_id}), 201
+    finally:
+        conn.close()
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
