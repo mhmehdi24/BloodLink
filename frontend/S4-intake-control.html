@@ -492,5 +492,53 @@
   })();
 </script>
 <script src="api.js"></script>
+<script>
+window.addEventListener("load", () => {
+    setTimeout(async () => {
+        try {
+            // 1. Load existing blood bags
+            const bags = await api.get("/api/inventory");
+            console.log("Loaded bags:", bags);
+
+            // 2. Try to render in any tbody, OR log for inspection
+            const tbody = document.querySelector('tbody');
+            if (tbody) {
+                tbody.innerHTML = bags.map(b => `
+                    <tr class="border-b">
+                        <td class="py-3 px-4">${b.BagCode}</td>
+                        <td class="py-3 px-4">${b.BloodType}</td>
+                        <td class="py-3 px-4">${b.CollectionDate}</td>
+                        <td class="py-3 px-4">${b.ExpiryDate}</td>
+                        <td class="py-3 px-4">${b.Status}</td>
+                    </tr>
+                `).join('');
+                console.log("Rendered", bags.length, "bag rows");
+            }
+
+            // 3. Wire the intake form submit button
+            const buttons = document.querySelectorAll('button');
+            const submitBtn = Array.from(buttons).find(b => 
+                b.textContent.toLowerCase().includes('log') || 
+                b.textContent.toLowerCase().includes('intake') ||
+                b.textContent.toLowerCase().includes('submit')
+            );
+
+            if (submitBtn) {
+                submitBtn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    // Find form inputs
+                    const inputs = document.querySelectorAll('input, select');
+                    console.log("Form inputs:", inputs);
+
+                    // We'll wire the actual submit after the user confirms the test
+                });
+            }
+
+        } catch (err) {
+            console.error("Intake load failed:", err);
+        }
+    }, 800);
+});
+</script>
 </body>
 </div></main></div></body></html>
