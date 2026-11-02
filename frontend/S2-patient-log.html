@@ -746,5 +746,47 @@
     })();
   </script>
   <script src="api.js"></script>
+  <script>
+window.addEventListener("load", () => {
+    setTimeout(async () => {
+        try {
+            // 1. Load existing patient cases
+            const cases = await api.get("/api/patients");
+            console.log("Loaded patients:", cases);
+
+            // 2. Try to render them in the table
+            // Find the table body on the page
+            const tbody = document.querySelector('tbody');
+            if (tbody && cases.length > 0) {
+                tbody.innerHTML = cases.map(c => `
+                    <tr class="border-b border-outline-variant hover:bg-surface-container transition-colors">
+                        <td class="py-3 px-4 text-on-surface">#${c.CaseID}</td>
+                        <td class="py-3 px-4 text-on-surface font-medium">${c.PatientName}</td>
+                        <td class="py-3 px-4"><span class="px-2 py-1 rounded bg-error-container text-on-error-container font-bold text-xs">${c.BloodTypeNeeded}</span></td>
+                        <td class="py-3 px-4 text-on-surface">${c.UnitsRequired} units</td>
+                        <td class="py-3 px-4 text-on-surface">${c.DirectedDonorID ? 'Donor #' + c.DirectedDonorID : '—'}</td>
+                        <td class="py-3 px-4"><span class="px-2 py-1 rounded bg-primary-fixed-dim text-on-primary-fixed-variant font-medium text-xs">${c.Status}</span></td>
+                        <td class="py-3 px-4 text-on-surface-variant text-sm">${new Date(c.OpenedAt).toLocaleString()}</td>
+                    </tr>
+                `).join('');
+                console.log("Rendered", cases.length, "patient rows");
+            }
+
+            // 3. Wire up the form (find the submit button)
+            const submitBtn = document.querySelector('button[type="submit"], form button');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    console.log("Submit button clicked");
+                    // (We'll come back to the form logic after we see the render work)
+                });
+            }
+
+        } catch (err) {
+            console.error("Patient log load failed:", err);
+        }
+    }, 800);
+});
+</script>
 </body>
 </div></div></main></div></body></html>
