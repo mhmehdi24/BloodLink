@@ -562,5 +562,32 @@
   });
 </script>
 <script src="api.js"></script>
+<script>
+window.addEventListener("load", () => {
+    setTimeout(async () => {
+        try {
+            console.log("Loading analytics...");
+            const data = await api.get("/api/analytics/wastage");
+            console.log("Analytics data:", data);
+
+            // Find the page title and inject the live wastage percentage
+            const h1 = document.querySelector('h1');
+            if (h1) {
+                h1.innerHTML = `Live Wastage: ${data.wastage_percentage.toFixed(1)}%`;
+                h1.style.color = "#b91c1c"; // Make it stand out in red
+            }
+
+            // Also show total active units somewhere prominent
+            const h2 = document.querySelector('h2');
+            if (h2) {
+                h2.innerHTML = `Total Active Units: ${data.totals.active}`;
+            }
+
+        } catch (err) {
+            console.error("Analytics load failed:", err);
+        }
+    }, 800);
+});
+</script>
 </body>
 </div></main></div></body></html>
