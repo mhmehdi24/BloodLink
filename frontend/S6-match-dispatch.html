@@ -430,6 +430,87 @@
     });
   }
 </script>
+<!-- Live FIFO Control Panel -->
+<div style="position: fixed; bottom: 20px; right: 20px; background: white; border: 2px solid #b91c1c; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 9999; width: 350px; font-family: sans-serif;">
+    <h3 style="margin-top: 0; color: #b91c1c; font-weight: bold; margin-bottom: 10px;">⚡ Live FIFO Matcher</h3>
+    
+    <label style="font-size: 12px; font-weight: bold; color: #333;">Select Requisition:</label>
+    <select id="req-selector" style="width: 100%; padding: 8px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 5px;">
+        <option>Loading...</option>
+    </select>
+
+    <button id="run-match-btn" style="width: 100%; background: #b91c1c; color: white; padding: 10px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
+        Run FIFO Match
+    </button>
+
+    <div id="match-result" style="margin-top: 15px; font-size: 13px; color: #333; display: none; background: #f3f4f6; padding: 10px; border-radius: 5px;">
+    </div>
+</div>
+
 <script src="api.js"></script>
+<script>
+window.addEventListener("load", () => {
+    setTimeout(async () => {
+        const selector = document.getElementById('req-selector');
+        const btn = document.getElementById('run-match-btn');
+        const resultDiv = document.getElementById('match-result');
+
+        try {
+            // Load pending requisitions into the dropdown
+            const reqs = await api.get("/api/requisitions?status=Pending");
+            console.log("Loaded requisitions for dropdown:", reqs);
+
+            if (reqs.length === 0) {
+                selector.innerHTML = '<option>No pending requisitions</option>';
+            } else {
+                selector.innerHTML = reqs.map(r => 
+                    `<option value="${r.RequisitionID}">REQ #${r.RequisitionID} - ${r.BloodTypeNeeded} (${r.UnitsRequired} units)</option>`
+                ).join('');
+            }
+
+            // Handle the button click
+            btn.addEventListener('click', async () => {
+                const reqId = selector.value;
+                if (!reqId) return;
+
+                btn.textContent = "Matching...";
+                btn.style.opacity = "0.7";
+                resultDiv.style.display = "none";
+
+                try {
+                    const match = await api.get(`/api/match/${reqId}`);
+                    console.log("Match result:", match);
+
+                    // Show the results
+                    resultDiv.style.display = "block";
+                    if (match.matched_count === 0) {
+                        resultDiv.innerHTML = `<span style="color: red; font-weight: bold;">❌ No compatible active bags found.</span>`;
+                    } else {
+                        const bestBag = match.matches[0]; // FIFO guarantees the first one is the oldest
+                        resultDiv.innerHTML = `
+                            <div style="color: green; font-weight: bold; margin-bottom: 5px;">✅ Match Found!</div>
+                            <strong>Oldest Bag:</strong> ${bestBag.BagCode}<br>
+                            <strong>Blood Type:</strong> ${bestBag.BloodType}<br>
+                            <strong>Expiry:</strong> ${bestBag.ExpiryDate}<br>
+                            <strong>Location:</strong> ${bestBag.StorageLocation}
+                        `;
+                    }
+                } catch (err) {
+                    resultDiv.style.display = "block";
+                    resultDiv.innerHTML = `<span style="color: red;">Error: ${err.message}</span>`;
+                } finally {
+                    btn.textContent = "Run FIFO Match";
+                    btn.style.opacity = "1";
+                }
+            });
+
+        } catch (err) {
+            console.error("Failed to load requisitions:", err);
+            selector.innerHTML = '<option>Error loading data</option>';
+        }
+    }, 800);
+});
+</script>
+
 </body>
 </div></main></div></body></html>
