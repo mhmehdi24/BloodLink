@@ -3,7 +3,7 @@
 // Wraps fetch() so every screen can call the API consistently.
 // ------------------------------------------------------------
 
-const API_BASE = "http://127.0.0.1:5000";
+const API_BASE = "https://blood-link-git-main-blood-donor1.vercel.app";
 
 async function request(method, path, body) {
     const options = {
