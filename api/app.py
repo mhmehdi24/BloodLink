@@ -9,11 +9,10 @@ Then visit http://127.0.0.1:5000/health
 
 from datetime import date, datetime, timedelta
 from flask import Flask, jsonify, request
-from flask_cors import CORS
 from api.db import get_connection
 
 app = Flask(__name__)
-CORS(app)  # Allow the frontend to call this API
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 # Custom JSON encoder so dates serialize as YYYY-MM-DD (not HTTP-date)

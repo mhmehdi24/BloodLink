@@ -13,7 +13,7 @@ from flask_cors import CORS
 from db import get_connection
 
 app = Flask(__name__)
-CORS(app)  # Allow the frontend to call this API
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 # Custom JSON encoder so dates serialize as YYYY-MM-DD (not HTTP-date)
