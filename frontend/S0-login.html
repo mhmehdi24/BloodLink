@@ -124,5 +124,21 @@
     }
   </script>
   <script src="api.js"></script>
+  <script>
+window.addEventListener("load", () => {
+    // Find the Sign In button
+    const buttons = document.querySelectorAll('button');
+    const signInBtn = Array.from(buttons).find(b => b.textContent.toLowerCase().includes('sign in'));
+
+    if (signInBtn) {
+        signInBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log("Sign In clicked - redirecting to Dashboard");
+            // Redirect to S1 dashboard
+            window.location.href = "S1-dashboard.html";
+        });
+    }
+});
+</script>
 </body>
-</div></main></body></html>
+</html>
