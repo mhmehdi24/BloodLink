@@ -9,7 +9,7 @@ Then visit http://127.0.0.1:5000/health
 
 from datetime import date, datetime, timedelta
 from flask import Flask, jsonify, request
-from api.db import get_connection
+from backend.db import get_connection
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
