@@ -33,7 +33,16 @@ def get_connection():
     is_cloud_db = "tidbcloud.com" in host.lower() or "aivencloud.com" in host.lower() or ssl_env in ("true", "1")
 
     if is_cloud_db and ssl_env not in ("false", "0"):
-        connect_kwargs["ssl_verify_cert"] = True
-        connect_kwargs["ssl_verify_identity"] = True
+        verify = os.getenv("DB_SSL_VERIFY", "true").lower() not in ("false", "0")
+        connect_kwargs["ssl_verify_cert"] = verify
+        connect_kwargs["ssl_verify_identity"] = verify
 
-    return pymysql.connect(**connect_kwargs)
+    try:
+        return pymysql.connect(**connect_kwargs)
+    except pymysql.err.OperationalError:
+        # If strict SSL verification failed on a serverless container, retry with encryption enabled without strict cert check
+        if is_cloud_db and connect_kwargs.get("ssl_verify_cert"):
+            connect_kwargs["ssl_verify_cert"] = False
+            connect_kwargs["ssl_verify_identity"] = False
+            return pymysql.connect(**connect_kwargs)
+        raise

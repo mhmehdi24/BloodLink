@@ -8,16 +8,21 @@ function getApiBase() {
     const savedBase = localStorage.getItem("BLOODLINK_API_BASE");
     if (savedBase) return savedBase.replace(/\/+$/, "");
 
-    // 2. Check if running in a local environment (localhost, 127.0.0.1, or file://)
+    // 2. Check if running in a local environment (localhost, 127.0.0.1)
     const hostname = window.location.hostname;
-    const isLocal = hostname === "localhost" || hostname === "127.0.0.1" || window.location.protocol === "file:";
+    const isLocal = hostname === "localhost" || hostname === "127.0.0.1";
 
     if (isLocal) {
         return "http://127.0.0.1:5000";
     }
 
-    // 3. Fallback to production Vercel deployment URL
-    return "https://blood-link-git-main-blood-donor1.vercel.app";
+    // 3. If running in browser over HTTP/HTTPS (e.g. Vercel), use current origin
+    if (window.location.origin && window.location.origin.startsWith("http")) {
+        return window.location.origin;
+    }
+
+    // 4. Fallback for file:// or offline preview
+    return "http://127.0.0.1:5000";
 }
 
 const API_BASE = getApiBase();

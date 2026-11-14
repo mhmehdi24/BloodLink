@@ -7,9 +7,10 @@ Run with:
 Then visit http://127.0.0.1:5000/health
 """
 
+import os
 from datetime import date, datetime, timedelta
 import pymysql
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory, redirect
 from flask_cors import CORS
 
 try:
@@ -54,15 +55,50 @@ app.json = BloodLinkJSONProvider(app)
 
 
 # ------------------------------------------------------------
-# Health check
+# Health check & Root API info
 # ------------------------------------------------------------
+@app.route("/", methods=["GET"])
+@app.route("/api", methods=["GET"])
+@app.route("/api/", methods=["GET"])
+@app.route("/api/health", methods=["GET"])
 @app.route("/health", methods=["GET"])
 def health():
-    """Simple health check endpoint."""
+    """Health check endpoint with live database connection diagnostic."""
+    db_status = "unknown"
+    db_error = None
+    try:
+        conn = get_connection()
+        try:
+            with conn.cursor() as cursor:
+                cursor.execute("SELECT 1")
+            db_status = "connected"
+        finally:
+            conn.close()
+    except Exception as e:
+        db_status = "disconnected"
+        db_error = str(e)
+
     return jsonify({
         "status": "ok",
         "service": "BloodLink API",
         "version": "1.0",
+        "database": {
+            "status": db_status,
+            "error": db_error
+        },
+        "endpoints": [
+            "/api/health",
+            "/api/donors",
+            "/api/inventory",
+            "/api/patients",
+            "/api/requisitions",
+            "/api/match/<id>",
+            "/api/dispatch",
+            "/api/hospitals",
+            "/api/analytics/wastage",
+            "/api/analytics/demand",
+            "/api/analytics/stock"
+        ]
     })
 
 
@@ -70,6 +106,7 @@ def health():
 # GET /api/donors — list all donors
 # ------------------------------------------------------------
 @app.route("/api/donors", methods=["GET"])
+@app.route("/donors", methods=["GET"])
 def list_donors():
     """Return all donors as a JSON list."""
     conn = get_connection()
@@ -90,6 +127,7 @@ def list_donors():
 # POST /api/donors — register a new donor (120-day rule)
 # ------------------------------------------------------------
 @app.route("/api/donors", methods=["POST"])
+@app.route("/donors", methods=["POST"])
 def create_donor():
     """Register a new donor, enforcing the 120-day recovery rule."""
     data = request.get_json(silent=True) or {}
@@ -145,6 +183,7 @@ def create_donor():
 # GET /api/inventory — list blood bags (optionally filter by status)
 # ------------------------------------------------------------
 @app.route("/api/inventory", methods=["GET"])
+@app.route("/inventory", methods=["GET"])
 def list_inventory():
     """Return all blood bags. Optional ?status=Active|Dispatched|Discarded."""
     status = request.args.get("status")
@@ -172,6 +211,7 @@ def list_inventory():
 # POST /api/inventory — register a new blood bag (42-day expiry)
 # ------------------------------------------------------------
 @app.route("/api/inventory", methods=["POST"])
+@app.route("/inventory", methods=["POST"])
 def create_inventory():
     """Register a new blood bag. ExpiryDate = CollectionDate + 42 days."""
     data = request.get_json(silent=True) or {}
@@ -223,6 +263,7 @@ def create_inventory():
 # PATCH /api/inventory/<id> — soft-delete or status update
 # ------------------------------------------------------------
 @app.route("/api/inventory/<int:unit_id>", methods=["PATCH"])
+@app.route("/inventory/<int:unit_id>", methods=["PATCH"])
 def update_inventory(unit_id):
     """Update a bag's status. Valid: Active, Dispatched, Discarded."""
     data = request.get_json(silent=True) or {}
@@ -254,6 +295,7 @@ def update_inventory(unit_id):
 # GET /api/requisitions — list hospital requisitions
 # ------------------------------------------------------------
 @app.route("/api/requisitions", methods=["GET"])
+@app.route("/requisitions", methods=["GET"])
 def list_requisitions():
     """Return all requisitions. Optional ?status=Pending|Approved|Fulfilled|Rejected."""
     status = request.args.get("status")
@@ -283,6 +325,7 @@ def list_requisitions():
 # POST /api/requisitions — create a hospital requisition
 # ------------------------------------------------------------
 @app.route("/api/requisitions", methods=["POST"])
+@app.route("/requisitions", methods=["POST"])
 def create_requisition():
     """Create a new hospital requisition (emergency blood request)."""
     data = request.get_json(silent=True) or {}
@@ -341,6 +384,7 @@ RBC_COMPATIBILITY = {
 # GET /api/hospitals — list all hospitals
 # ------------------------------------------------------------
 @app.route("/api/hospitals", methods=["GET"])
+@app.route("/hospitals", methods=["GET"])
 def list_hospitals():
     """Return all registered hospitals."""
     conn = get_connection()
@@ -360,6 +404,7 @@ def list_hospitals():
 # GET /api/match/<requisition_id> — FIFO dispatch algorithm with RBC compatibility
 # ------------------------------------------------------------
 @app.route("/api/match/<int:requisition_id>", methods=["GET"])
+@app.route("/match/<int:requisition_id>", methods=["GET"])
 def match_requisition(requisition_id):
     """Find compatible active bags for a requisition, ordered by FIFO (expiry ASC) and exact match priority."""
     conn = get_connection()
@@ -412,9 +457,11 @@ def match_requisition(requisition_id):
 
 
 # ------------------------------------------------------------
+# ------------------------------------------------------------
 # POST /api/dispatch — execute dispatch of matched blood bags
 # ------------------------------------------------------------
 @app.route("/api/dispatch", methods=["POST"])
+@app.route("/dispatch", methods=["POST"])
 def dispatch_requisition():
     """Fulfill a requisition by dispatching specified active blood bags."""
     data = request.get_json(silent=True) or {}
@@ -473,6 +520,7 @@ def dispatch_requisition():
 # GET /api/analytics/wastage — aggregate wastage stats
 # ------------------------------------------------------------
 @app.route("/api/analytics/wastage", methods=["GET"])
+@app.route("/analytics/wastage", methods=["GET"])
 def analytics_wastage():
     """Return aggregate stock and wastage metrics."""
     conn = get_connection()
@@ -513,10 +561,13 @@ def analytics_wastage():
         })
     finally:
         conn.close()   
-        # ------------------------------------------------------------
+
+
+# ------------------------------------------------------------
 # GET /api/patients — list all patient cases
 # ------------------------------------------------------------
 @app.route("/api/patients", methods=["GET"])
+@app.route("/patients", methods=["GET"])
 def list_patients():
     conn = get_connection()
     try:
@@ -531,10 +582,12 @@ def list_patients():
     finally:
         conn.close()
 
+
 # ------------------------------------------------------------
 # POST /api/patients — create a new patient case
 # ------------------------------------------------------------
 @app.route("/api/patients", methods=["POST"])
+@app.route("/patients", methods=["POST"])
 def create_patient():
     data = request.get_json(silent=True) or {}
     
@@ -562,5 +615,72 @@ def create_patient():
         return jsonify({"message": "Patient case created", "CaseID": new_id}), 201
     finally:
         conn.close()
+
+
+# ------------------------------------------------------------
+# Static files fallback routes (for serverless and local)
+# ------------------------------------------------------------
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+_STATIC_DIRS = [
+    os.path.join(_BASE_DIR, "..", "public"),
+    os.path.join(_BASE_DIR, "..", "frontend"),
+    os.path.join(_BASE_DIR, "public"),
+    os.path.join(_BASE_DIR, "frontend"),
+]
+
+def _find_file(filename):
+    for d in _STATIC_DIRS:
+        full_path = os.path.join(d, filename)
+        if os.path.isfile(full_path):
+            return d, filename
+    return None, None
+
+@app.route("/<string:page>.html", methods=["GET"])
+def serve_html(page):
+    target = f"{page}.html"
+    d, f = _find_file(target)
+    if d and f:
+        return send_from_directory(d, f)
+    return jsonify({"error": f"Page {target} not found"}), 404
+
+@app.route("/frontend/<path:filename>", methods=["GET"])
+def serve_frontend_dir(filename):
+    d, f = _find_file(filename)
+    if d and f:
+        return send_from_directory(d, f)
+    return jsonify({"error": f"File frontend/{filename} not found"}), 404
+
+@app.route("/api.js", methods=["GET"])
+def serve_api_js():
+    d, f = _find_file("api.js")
+    if d and f:
+        return send_from_directory(d, f)
+    return jsonify({"error": "api.js not found"}), 404
+
+
+# ------------------------------------------------------------
+# Custom 404 error handler with route hints
+# ------------------------------------------------------------
+@app.errorhandler(404)
+def handle_404(e):
+    return jsonify({
+        "error": "Route Not Found",
+        "path": request.path,
+        "method": request.method,
+        "available_endpoints": [
+            "/api/health",
+            "/api/donors",
+            "/api/inventory",
+            "/api/patients",
+            "/api/requisitions",
+            "/api/match/<requisition_id>",
+            "/api/dispatch",
+            "/api/hospitals",
+            "/api/analytics/wastage"
+        ],
+        "hint": "Static screens are accessible at /S0-login.html, /S1-dashboard.html, etc."
+    }), 404
+
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
