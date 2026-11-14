@@ -27,20 +27,32 @@ app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 class VercelPathRewriteMiddleware:
-    """WSGI middleware to restore original request path from Vercel's x-matched-path header."""
+    """WSGI middleware to restore original request path from __route__ param or Vercel headers."""
     def __init__(self, wsgi_app):
         self.wsgi_app = wsgi_app
 
     def __call__(self, environ, start_response):
-        matched_path = (
-            environ.get("HTTP_X_MATCHED_PATH")
-            or environ.get("HTTP_X_FORWARDED_URI")
-            or environ.get("HTTP_X_VERCEL_MATCHED_PATH")
-        )
-        if matched_path:
-            path_only = matched_path.split("?")[0]
-            environ["PATH_INFO"] = path_only
-            environ["REQUEST_URI"] = matched_path
+        from urllib.parse import parse_qs, urlencode
+        query_str = environ.get("QUERY_STRING", "")
+        params = parse_qs(query_str)
+
+        if "__route__" in params:
+            route = params.pop("__route__")[0]
+            clean_route = "/" + route.lstrip("/")
+            environ["PATH_INFO"] = clean_route
+            environ["REQUEST_URI"] = clean_route
+            environ["QUERY_STRING"] = urlencode(params, doseq=True)
+        else:
+            matched_path = (
+                environ.get("HTTP_X_MATCHED_PATH")
+                or environ.get("HTTP_X_FORWARDED_URI")
+                or environ.get("HTTP_X_VERCEL_MATCHED_PATH")
+            )
+            if matched_path and not matched_path.endswith("index.py"):
+                path_only = matched_path.split("?")[0]
+                environ["PATH_INFO"] = path_only
+                environ["REQUEST_URI"] = matched_path
+
         return self.wsgi_app(environ, start_response)
 
 app.wsgi_app = VercelPathRewriteMiddleware(ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1))
