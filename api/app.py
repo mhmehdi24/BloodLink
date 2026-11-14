@@ -21,8 +21,29 @@ except ImportError:
     except ImportError:
         from backend.db import get_connection
 
+from werkzeug.middleware.proxy_fix import ProxyFix
+
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+class VercelPathRewriteMiddleware:
+    """WSGI middleware to restore original request path from Vercel's x-matched-path header."""
+    def __init__(self, wsgi_app):
+        self.wsgi_app = wsgi_app
+
+    def __call__(self, environ, start_response):
+        matched_path = (
+            environ.get("HTTP_X_MATCHED_PATH")
+            or environ.get("HTTP_X_FORWARDED_URI")
+            or environ.get("HTTP_X_VERCEL_MATCHED_PATH")
+        )
+        if matched_path:
+            path_only = matched_path.split("?")[0]
+            environ["PATH_INFO"] = path_only
+            environ["REQUEST_URI"] = matched_path
+        return self.wsgi_app(environ, start_response)
+
+app.wsgi_app = VercelPathRewriteMiddleware(ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1))
 
 @app.errorhandler(pymysql.err.OperationalError)
 def handle_db_operational_error(e):
@@ -62,6 +83,8 @@ app.json = BloodLinkJSONProvider(app)
 @app.route("/api/", methods=["GET"])
 @app.route("/api/health", methods=["GET"])
 @app.route("/health", methods=["GET"])
+@app.route("/api/index.py", methods=["GET"])
+@app.route("/index.py", methods=["GET"])
 def health():
     """Health check endpoint with live database connection diagnostic."""
     db_status = "unknown"
