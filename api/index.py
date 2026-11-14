@@ -1,4 +1,7 @@
-from api.app import app
+try:
+    from api.app import app
+except ImportError:
+    from app import app
 from flask import make_response
 
 @app.after_request

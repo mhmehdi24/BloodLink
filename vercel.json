@@ -1,4 +1,9 @@
 {
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.py" },
+    { "source": "/", "destination": "/frontend/S0-login.html" },
+    { "source": "/(.*)", "destination": "/frontend/$1" }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",

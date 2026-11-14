@@ -113,32 +113,18 @@
         submitLabel.textContent = 'Sign In';
         submitBtn.removeAttribute('disabled');
         
-        const adminVal = document.getElementById('adminId').value;
+        const adminVal = (document.getElementById('adminId').value || '').trim();
         if (adminVal.toLowerCase() !== 'admin') {
           alertBox.classList.remove('hidden');
-          document.getElementById('authAlertText').textContent = 'Unauthorized ID. Restricted to Dispatch and Medical Officers.';
+          document.getElementById('authAlertText').textContent = 'Unauthorized ID. Restricted to Dispatch and Medical Officers (Use "admin").';
         } else {
-          submitLabel.textContent = 'Access Granted';
+          submitLabel.textContent = 'Access Granted ✓';
+          setTimeout(() => {
+            window.location.href = "S1-dashboard.html";
+          }, 400);
         }
-      }, 750);
+      }, 600);
     }
   </script>
-  <script src="api.js"></script>
-  <script>
-window.addEventListener("load", () => {
-    // Find the Sign In button
-    const buttons = document.querySelectorAll('button');
-    const signInBtn = Array.from(buttons).find(b => b.textContent.toLowerCase().includes('sign in'));
-
-    if (signInBtn) {
-        signInBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            console.log("Sign In clicked - redirecting to Dashboard");
-            // Redirect to S1 dashboard
-            window.location.href = "S1-dashboard.html";
-        });
-    }
-});
-</script>
 </body>
 </html>

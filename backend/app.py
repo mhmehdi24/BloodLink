@@ -8,12 +8,32 @@ Then visit http://127.0.0.1:5000/health
 """
 
 from datetime import date, datetime, timedelta
+import pymysql
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from db import get_connection
+
+try:
+    from db import get_connection
+except ImportError:
+    from backend.db import get_connection
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+@app.errorhandler(pymysql.err.OperationalError)
+def handle_db_operational_error(e):
+    return jsonify({
+        "error": "Database Connection Failed",
+        "detail": str(e),
+        "hint": "Please verify MySQL is running and your .env credentials (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT) are correct."
+    }), 503
+
+@app.errorhandler(pymysql.err.MySQLError)
+def handle_mysql_error(e):
+    return jsonify({
+        "error": "Database Query Error",
+        "detail": str(e)
+    }), 500
 
 
 # Custom JSON encoder so dates serialize as YYYY-MM-DD (not HTTP-date)
@@ -297,13 +317,48 @@ def create_requisition():
             "Status": "Pending",
         }), 201
     finally:
-        conn.close()   
-        # ------------------------------------------------------------
-# GET /api/match/<requisition_id> — FIFO dispatch algorithm
+        conn.close()
+
+
+# Red Blood Cell (RBC) compatibility table
+# Key: Recipient blood type, Value: List of donor blood types (exact match first)
+RBC_COMPATIBILITY = {
+    "A+":  ["A+", "A-", "O+", "O-"],
+    "A-":  ["A-", "O-"],
+    "B+":  ["B+", "B-", "O+", "O-"],
+    "B-":  ["B-", "O-"],
+    "AB+": ["AB+", "AB-", "A+", "A-", "B+", "B-", "O+", "O-"],
+    "AB-": ["AB-", "A-", "B-", "O-"],
+    "O+":  ["O+", "O-"],
+    "O-":  ["O-"],
+}
+
+
+# ------------------------------------------------------------
+# GET /api/hospitals — list all hospitals
+# ------------------------------------------------------------
+@app.route("/api/hospitals", methods=["GET"])
+def list_hospitals():
+    """Return all registered hospitals."""
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "SELECT HospitalID, HospitalName, Location, ContactPerson, ContactNumber "
+                "FROM Hospitals ORDER BY HospitalName"
+            )
+            hospitals = cursor.fetchall()
+        return jsonify(hospitals)
+    finally:
+        conn.close()
+
+
+# ------------------------------------------------------------
+# GET /api/match/<requisition_id> — FIFO dispatch algorithm with RBC compatibility
 # ------------------------------------------------------------
 @app.route("/api/match/<int:requisition_id>", methods=["GET"])
 def match_requisition(requisition_id):
-    """Find compatible active bags for a requisition, ordered by FIFO (expiry ASC)."""
+    """Find compatible active bags for a requisition, ordered by FIFO (expiry ASC) and exact match priority."""
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
@@ -324,15 +379,22 @@ def match_requisition(requisition_id):
                     "current_status": req["Status"],
                 }), 400
 
-            # Step 2: FIFO query — compatible active bags, oldest expiry first
-            cursor.execute(
-                "SELECT UnitID, BagCode, BloodType, ExpiryDate, StorageLocation "
-                "FROM Blood_Inventory "
-                "WHERE BloodType = %s AND Status = 'Active' "
-                "ORDER BY ExpiryDate ASC "
-                "LIMIT %s",
-                (req["BloodTypeNeeded"], req["UnitsRequired"]),
+            # Step 2: FIFO query with RBC compatibility — compatible active bags, oldest expiry first
+            needed_type = req["BloodTypeNeeded"]
+            compatible_types = RBC_COMPATIBILITY.get(needed_type, [needed_type])
+            placeholders = ", ".join(["%s"] * len(compatible_types))
+
+            sql = (
+                f"SELECT UnitID, BagCode, BloodType, ExpiryDate, StorageLocation, "
+                f"(CASE WHEN BloodType = %s THEN 1 ELSE 0 END) AS IsExactMatch "
+                f"FROM Blood_Inventory "
+                f"WHERE BloodType IN ({placeholders}) AND Status = 'Active' "
+                f"ORDER BY IsExactMatch DESC, ExpiryDate ASC "
+                f"LIMIT %s"
             )
+            params = (needed_type, *compatible_types, req["UnitsRequired"])
+
+            cursor.execute(sql, params)
             bags = cursor.fetchall()
 
         return jsonify({
@@ -340,7 +402,66 @@ def match_requisition(requisition_id):
             "matches": bags,
             "matched_count": len(bags),
             "requested_count": req["UnitsRequired"],
+            "compatible_types": compatible_types,
         })
+    finally:
+        conn.close()
+
+
+# ------------------------------------------------------------
+# POST /api/dispatch — execute dispatch of matched blood bags
+# ------------------------------------------------------------
+@app.route("/api/dispatch", methods=["POST"])
+def dispatch_requisition():
+    """Fulfill a requisition by dispatching specified active blood bags."""
+    data = request.get_json(silent=True) or {}
+    req_id = data.get("RequisitionID")
+    unit_ids = data.get("UnitIDs") or []
+
+    if not req_id or not unit_ids:
+        return jsonify({"error": "RequisitionID and UnitIDs (array of ints) are required"}), 400
+
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            # Verify requisition is still Pending
+            cursor.execute(
+                "SELECT RequisitionID, Status, UnitsRequired FROM Hospital_Requisitions WHERE RequisitionID = %s",
+                (req_id,),
+            )
+            req = cursor.fetchone()
+            if not req:
+                return jsonify({"error": "Requisition not found"}), 404
+            if req["Status"] != "Pending":
+                return jsonify({"error": f"Requisition is already {req['Status']}"}), 400
+
+            # Update bags to Dispatched
+            placeholders = ", ".join(["%s"] * len(unit_ids))
+            cursor.execute(
+                f"UPDATE Blood_Inventory SET Status = 'Dispatched' "
+                f"WHERE UnitID IN ({placeholders}) AND Status = 'Active'",
+                tuple(unit_ids),
+            )
+            updated_count = cursor.rowcount
+            if updated_count == 0:
+                conn.rollback()
+                return jsonify({"error": "Selected units are no longer active or do not exist"}), 400
+
+            # Mark requisition fulfilled
+            cursor.execute(
+                "UPDATE Hospital_Requisitions SET Status = 'Fulfilled' WHERE RequisitionID = %s",
+                (req_id,),
+            )
+        conn.commit()
+        return jsonify({
+            "message": "Dispatch successful",
+            "RequisitionID": req_id,
+            "DispatchedCount": updated_count,
+            "Status": "Fulfilled",
+        })
+    except Exception as e:
+        conn.rollback()
+        raise e
     finally:
         conn.close()
 
